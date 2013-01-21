@@ -334,6 +334,8 @@ let g:SuperTabDefaultCompletionType = "context"
 hi link EasyMotionTarget ErrorMsg
 hi link EasyMotionShade  Comment
 
+" --- NERDTree
+let g:NERDTreeWinPos = "right"
 
 " --- TagBar
 " toggle TagBar with F7
