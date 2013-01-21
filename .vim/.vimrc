@@ -66,7 +66,7 @@ else
   set guifont=Osaka-Mono:h20
   set background=dark 
   set cursorline        " highlight current line
-  colors wombat256
+  colors grb256
   highlight CursorLine          guibg=#003853 ctermbg=24  gui=none cterm=none
 endif
 
@@ -342,6 +342,6 @@ nnoremap <silent> <F7> :TagbarToggle<CR>
 let g:tagbar_autofocus = 1
 let g:tagbar_left = 1
 " --- PowerLine
-" let g:Powerline_symbols = 'fancy' " require fontpatcher
+let g:Powerline_symbols = 'fancy' " require fontpatcher
 
 set t_Co=256          " 256 color mode

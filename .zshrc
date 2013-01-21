@@ -43,3 +43,4 @@ export P4PORT=172.30.1.1:1666
 export P4CLIENT=IOcore.OEL63.BuildEnv
 export P4USER=swind.ou
 
+export TERM=xterm-256color
