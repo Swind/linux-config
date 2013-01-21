@@ -5,15 +5,32 @@
 " read https://github.com/vgod/vimrc/blob/master/README.md for more info
 
 
-" For pathogen.vim: auto load all plugins in .vim/bundle
+" For vundle: auto load all plugins in .vim/bundle
 
-let g:pathogen_disabled = []
-if !has('gui_running')
-   call add(g:pathogen_disabled, 'powerline')
-endif
+" vundle {
+set rtp+=~/.vim/bundle/vundle/
+call vundle#rc()
+" }
 
-call pathogen#runtime_append_all_bundles()
-call pathogen#helptags()
+"Let vundle manage Vundle
+"Required!
+Bundle 'gmarik/vundle'
+
+Bundle 'Twinside/vim-cuteErrorMarker'
+Bundle 'Vislncr'
+Bundle 'Townk/vim-autoclose'
+Bundle 'Lokaltog/vim-easymotion'
+Bundle 'vim-scripts indent-motion'
+Bundle 'vim-scripts/indent-motion'
+Bundle 'vim-scripts/matchit.zip'
+Bundle 'scrooloose/nerdcommenter'
+Bundle 'scrooloose/nerdtree'
+Bundle 'Lokaltog/vim-powerline'
+Bundle 'msanders/snipmate.vim'
+Bundle 'ervandew/supertab'
+Bundle 'tpope/vim-surround'
+Bundle 'majutsushi/tagbar'
+Bundle 'vim-scripts/YankRing.vim'
 
 " General Settings
 
