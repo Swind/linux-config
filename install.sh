@@ -15,7 +15,7 @@ die(){
 cd ~
 
 #Checkout my config
-git clone git@github.com:Swind/linux-config.git "$CONFIG_HOME"
+git clone https://github.com/Swind/linux-config.git "$CONFIG_HOME"
 
 ln -s $CONFIG_HOME/.vim .vim
 ln -s .vim/.vimrc .vimrc
