@@ -17,11 +17,9 @@ call vundle#rc()
 Bundle 'gmarik/vundle'
 
 Bundle 'Twinside/vim-cuteErrorMarker'
-Bundle 'Vislncr'
-Bundle 'Townk/vim-autoclose'
+Bundle 'AutoClose'
 Bundle 'Lokaltog/vim-easymotion'
-Bundle 'vim-scripts indent-motion'
-Bundle 'vim-scripts/indent-motion'
+Bundle 'tmhedberg/indent-motion'
 Bundle 'vim-scripts/matchit.zip'
 Bundle 'scrooloose/nerdcommenter'
 Bundle 'scrooloose/nerdtree'
@@ -260,6 +258,9 @@ set cot-=preview "disable doc preview in omnicomplete
 " make CSS omnicompletion work for SASS and SCSS
 autocmd BufNewFile,BufRead *.scss             set ft=scss.css
 autocmd BufNewFile,BufRead *.sass             set ft=sass.css
+
+" Use astyle to format c code
+autocmd BufWritePost *.c execute '!astyle %'
 
 "--------------------------------------------------------------------------- 
 " ENCODING SETTINGS
