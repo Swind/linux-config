@@ -16,8 +16,8 @@ call vundle#rc()
 "Required!
 Bundle 'gmarik/vundle'
 
-Bundle 'Twinside/vim-cuteErrorMarker'
 Bundle 'AutoClose'
+Bundle 'Twinside/vim-cuteErrorMarker'
 Bundle 'Lokaltog/vim-easymotion'
 Bundle 'tmhedberg/indent-motion'
 Bundle 'vim-scripts/matchit.zip'
@@ -25,9 +25,7 @@ Bundle 'scrooloose/nerdcommenter'
 Bundle 'scrooloose/nerdtree'
 Bundle 'Lokaltog/powerline'
 Bundle 'msanders/snipmate.vim'
-Bundle 'ervandew/supertab'
 Bundle 'tpope/vim-surround'
-Bundle 'majutsushi/tagbar'
 Bundle 'vim-scripts/YankRing.vim'
 
 " General Settings
@@ -47,6 +45,7 @@ filetype plugin on    " Enable filetype-specific plugins
 
 " auto reload vimrc when editing it
 autocmd! bufwritepost .vimrc source ~/.vimrc
+
 
 
 syntax on		" syntax highlight
@@ -92,7 +91,7 @@ set t_vb=
 set tm=500
 
 " TAB setting{
-"   set expandtab        "replace <TAB> with spaces
+   set expandtab        "replace <TAB> with spaces
    set softtabstop=4
    set shiftwidth=4 
 
@@ -124,6 +123,7 @@ endfunction
 
 " C/C++ specific settings
 autocmd FileType c,cpp,cc  set cindent comments=sr:/*,mb:*,el:*/,:// cino=>s,e0,n0,f0,{0,}0,^-1s,:0,=s,g0,h1s,p2,t0,+2,(2,)20,*30
+autocmd BufNewFile,BufRead *.c set formatprg=astyle\ --style=gnu
 
 "Restore cursor to file position in previous editing session
 set viminfo='10,\"100,:20,%,n~/.viminfo
@@ -224,6 +224,7 @@ cmap cd. lcd %:p:h
 " Ctrl-[ jump out of the tag stack (undo Ctrl-])
 " map <C-[> :po<CR>
 
+
 " ,g generates the header guard
 map <leader>g :call IncludeGuard()<CR>
 fun! IncludeGuard()
@@ -258,9 +259,6 @@ set cot-=preview "disable doc preview in omnicomplete
 " make CSS omnicompletion work for SASS and SCSS
 autocmd BufNewFile,BufRead *.scss             set ft=scss.css
 autocmd BufNewFile,BufRead *.sass             set ft=sass.css
-
-" Use astyle to format c code
-autocmd BufWritePost *.c execute '!astyle %'
 
 "--------------------------------------------------------------------------- 
 " ENCODING SETTINGS
@@ -322,8 +320,6 @@ if !has("gui_running")
    nmap OD h
 endif
 
-
-
 " --- Command-T
 let g:CommandTMaxHeight = 15
 
@@ -331,7 +327,7 @@ let g:CommandTMaxHeight = 15
 let g:SuperTabDefaultCompletionType = "context"
 
 " --- EasyMotion
-"let g:EasyMotion_leader_key = '<Leader>m' " default is <Leader>w
+let g:EasyMotion_leader_key = '<Leader>m' " default is <Leader>w
 hi link EasyMotionTarget ErrorMsg
 hi link EasyMotionShade  Comment
 
