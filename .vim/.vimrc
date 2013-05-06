@@ -6,7 +6,7 @@
 
 
 " For vundle: auto load all plugins in .vim/bundle
-
+"
 " vundle {
 set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
@@ -16,7 +16,10 @@ call vundle#rc()
 "Required!
 Bundle 'gmarik/vundle'
 
+Bundle 'Tagbar'
+Bundle 'Rip-Rip/clang_complete'
 Bundle 'AutoClose'
+Bundle 'Align'
 Bundle 'Twinside/vim-cuteErrorMarker'
 Bundle 'Lokaltog/vim-easymotion'
 Bundle 'tmhedberg/indent-motion'
@@ -27,6 +30,9 @@ Bundle 'Lokaltog/powerline'
 Bundle 'msanders/snipmate.vim'
 Bundle 'tpope/vim-surround'
 Bundle 'vim-scripts/YankRing.vim'
+Bundle 'kien/ctrlp.vim'
+Bundle 'molokai'
+Bundle 'yanagiis/cmake.vim'
 
 " General Settings
 
@@ -46,8 +52,6 @@ filetype plugin on    " Enable filetype-specific plugins
 " auto reload vimrc when editing it
 autocmd! bufwritepost .vimrc source ~/.vimrc
 
-
-
 syntax on		" syntax highlight
 set hlsearch		" search highlighting
 
@@ -63,7 +67,7 @@ else
   set guifont=Osaka-Mono:h20
   set background=dark 
   set cursorline        " highlight current line
-  colors grb256
+  colors molokai
   highlight CursorLine          guibg=#003853 ctermbg=24  gui=none cterm=none
 endif
 
@@ -123,7 +127,7 @@ endfunction
 
 " C/C++ specific settings
 autocmd FileType c,cpp,cc  set cindent comments=sr:/*,mb:*,el:*/,:// cino=>s,e0,n0,f0,{0,}0,^-1s,:0,=s,g0,h1s,p2,t0,+2,(2,)20,*30
-autocmd BufNewFile,BufRead *.c set formatprg=astyle\ --style=gnu
+autocmd BufNewFile,BufRead *.c set formatprg=astyle\ --style=linux
 
 "Restore cursor to file position in previous editing session
 set viminfo='10,\"100,:20,%,n~/.viminfo
@@ -337,10 +341,20 @@ let g:NERDTreeWinPos = "right"
 " --- TagBar
 " toggle TagBar with F7
 nnoremap <silent> <F7> :TagbarToggle<CR> 
+
 " set focus to TagBar when opening it
 let g:tagbar_autofocus = 1
-let g:tagbar_left = 1
+let g:tagbar_left = 0
+
 " --- PowerLine
 let g:Powerline_symbols = 'fancy' " require fontpatcher
+
+" --- Clang_complete"
+let g:clang_use_library = 1
+let g:clang_library_path = "/root/Software/clang+llvm-3.2-amd64-freebsd9/lib"
+let g:clang_auto_select = 1
+let g:clang_periodic_quickfix = 1
+let g:clang_snippets = 1
+let g:clang_complete_macros = 1
 
 set t_Co=256          " 256 color mode

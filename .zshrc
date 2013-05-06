@@ -40,9 +40,15 @@ fi
 
 if [[ $platform == "freebsd" ]]; then
     echo '===== Config FreeBSD Environment ====='
-    echo 'Setup Clang CC and CXX to /usr/bin/clang and /usr/bin/clang'
+    echo 'Setup Clang CC and CXX to /usr/bin/clang and /usr/bin/clang++'
     export CC=/usr/bin/clang
-    export CXX=/usr/bin/clang
+    export CXX=/usr/bin/clang++
 fi
+
+#My Alias
+alias cmsg="echo /dev/null > /var/log/messages"
+alias vmsg="vim /var/log/messages"
+alias tmsg="tail -f /var/log/messages"
+alias l="la"
 
 export TERM=xterm-256color
