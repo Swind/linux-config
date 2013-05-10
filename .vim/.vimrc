@@ -341,6 +341,7 @@ let g:NERDTreeWinPos = "right"
 " --- TagBar
 " toggle TagBar with F7
 nnoremap <silent> <F7> :TagbarToggle<CR> 
+nnoremap <silent> <F12> :w<CR>:make<CR> 
 
 " set focus to TagBar when opening it
 let g:tagbar_autofocus = 1
