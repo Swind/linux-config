@@ -5,7 +5,7 @@
 ################################################
 # Path to your oh-my-zsh configuration.
 ZSH=$HOME/.oh-my-zsh
-ZSH_THEME="bira"
+ZSH_THEME="carlcarl"
 
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
