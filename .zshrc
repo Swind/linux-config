@@ -20,7 +20,7 @@ COMPLETION_WAITING_DOTS="true"
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(git)
+plugins=(git tmux)
 
 # Customize to your needs...
 export PATH=/usr/lib64/qt-3.3/bin:/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin:/root/bin
@@ -50,5 +50,11 @@ alias cmsg="echo /dev/null > /var/log/messages"
 alias vmsg="vim /var/log/messages"
 alias tmsg="tail -f /var/log/messages"
 alias l="la"
+
+#For FreeBSD
+if [[ "$unamestr" == "FreeBSD" ]]; then
+    alias rz="lrz"
+    alias sz="lsz"
+fi
 
 export TERM=xterm-256color

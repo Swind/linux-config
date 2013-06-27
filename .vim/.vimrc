@@ -28,6 +28,7 @@ Bundle 'DoxyGen-Syntax'
 Bundle 'AutoClose'
 Bundle 'Align'
 Bundle 'tpope/vim-surround'
+Bundle 'Indent-Guides'
 
 "Move
 Bundle 'Lokaltog/vim-easymotion'
@@ -371,7 +372,7 @@ let g:Powerline_symbols = 'fancy' " require fontpatcher
 
 " --- Clang_complete"
 let g:clang_use_library       = 1
-let g:clang_library_path      = "/root/Software/clang+llvm-3.2-amd64-freebsd9/lib"
+let g:clang_library_path      = "/root/Software/clang+llvm-3.3-amd64-freebsd9/lib"
 let g:clang_auto_select       = 1
 let g:clang_periodic_quickfix = 1
 let g:clang_snippets          = 1
@@ -381,5 +382,9 @@ let g:load_doxygen_syntax     = 1
 
 " --- For ag.vim
 let g:agprg="/usr/local/bin/ag --column"
+
+" --- For indent guides"
+let g:indent_guides_guide_size=1
+
 
 set t_Co=256          " 256 color mode
