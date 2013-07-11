@@ -1,4 +1,3 @@
-#!/bin/bash
 CONFIG_HOME=.myconfig
 
 warn(){
