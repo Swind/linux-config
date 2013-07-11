@@ -20,7 +20,8 @@ COMPLETION_WAITING_DOTS="true"
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(git mercurial)
+#
+plugins=(git)
 
 # Customize to your needs...
 export PATH=/usr/lib64/qt-3.3/bin:/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin:/root/bin
@@ -39,9 +40,13 @@ elif [[ "$unamestr" == "FreeBSD" ]]; then
 fi
 
 if [[ $platform == "freebsd" ]]; then
-    echo '===== Config FreeBSD Environment ====='
+    echo 'Setup Clang CC and CXX to /usr/bin/clang and /usr/bin/clang++'
     export CC=/usr/local/bin/clang
     export CXX=/usr/local/bin/clang++
+
+    export LC_ALL=zh_TW.UTF-8
+    export LANG=zh_TW.UTF-8
+
     export PATH=/usr/local/libexec/ccache:$PATH
     export CCACHE_PATH=/usr/bin:/usr/local/bin
     export CCACHE_DIR=/var/tmp/ccache

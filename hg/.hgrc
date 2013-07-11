@@ -1,0 +1,6 @@
+[ui]
+username = Swind <swind@pi-coral.com>
+[alias]
+slog = log --style=/root/.myconfig/mercurial-cli-templates/map-cmdline.slog
+nlog = log --style=/root/.myconfig/mercurial-cli-templates/map-cmdline.nlog
+sglog = glog --style=/root/.myconfig/mercurial-cli-templates/map-cmdline.sglog

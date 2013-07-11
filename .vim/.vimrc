@@ -50,6 +50,9 @@ Bundle 'kien/ctrlp.vim'
 Bundle 'Lokaltog/powerline'
 Bundle 'molokai'
 
+"Notes and Tools"
+Bundle 'vimwiki'
+
 " General Settings
 
 set nocompatible	" not compatible with the old-fashion vi mode
@@ -374,7 +377,7 @@ let g:Powerline_symbols = 'fancy' " require fontpatcher
 let g:clang_use_library       = 1
 let g:clang_library_path      = "/root/Software/clang+llvm-3.3-amd64-freebsd9/lib"
 let g:clang_auto_select       = 1
-let g:clang_periodic_quickfix = 1
+let g:clang_periodic_quickfix = 0
 let g:clang_snippets          = 1
 let g:clang_complete_macros   = 1
 

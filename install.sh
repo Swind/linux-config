@@ -9,14 +9,14 @@ die(){
 	exit 1
 }
 
-[ -e "~/.config" ] && die "~/config already exists."
+[ -e "~/.myconfig" ] && die "~/myconfig already exists."
 
 cd ~
 
 #Checkout my config
 git clone git://github.com/Swind/linux-config.git "$CONFIG_HOME"
 
-#install vundle
+#install vundle for vim
 git clone https://github.com/gmarik/vundle.git ~/.vim/bundle/vundle
 
 #install oh-my-zsh
@@ -26,7 +26,7 @@ ln -s $CONFIG_HOME/.vim .vim
 ln -s .vim/.vimrc .vimrc
 ln -s $CONFIG_HOME/.zshrc .zshrc
 ln -s $CONFIG_HOME/.tmux.conf .tmux.conf
-cp zsh/themes/*.* ~/.oh-my-zsh/themes/
+cp zsh/themes/* ~/.oh-my-zsh/themes/
 
 #Set git environment
 git config --global user.email "idle.swind@gmail.com"
