@@ -22,15 +22,14 @@ git clone https://github.com/gmarik/vundle.git ~/.vim/bundle/vundle
 #install oh-my-zsh
 curl -L https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh | sh
 
-ln -s $CONFIG_HOME/.vim .vim
-ln -s .vim/.vimrc .vimrc
+ln -s $CONFIG_HOME/.vim/.vimrc .vimrc
 ln -s $CONFIG_HOME/.zshrc .zshrc
 ln -s $CONFIG_HOME/.tmux.conf .tmux.conf
 cp zsh/themes/* ~/.oh-my-zsh/themes/
 
 #Set git environment
-git config --global user.email "idle.swind@gmail.com"
-git config --global user.name "Swind"
+git config --global user.email "elsvent@gmail.com"
+git config --global user.name "Elsvent"
 
 echo "Configuration files has been installed."
 cd "$CONFIG_HOME"
