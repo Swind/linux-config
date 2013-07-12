@@ -47,7 +47,7 @@ Bundle 'jistr/vim-nerdtree-tabs'
 Bundle 'kien/ctrlp.vim'
 
 "UI"
-Bundle 'Lokaltog/powerline'
+Bundle 'Lokaltog/vim-powerline'
 Bundle 'molokai'
 
 " General Settings
@@ -72,11 +72,11 @@ syntax on		" syntax highlight
 set hlsearch		" search highlighting
 
 if has("gui_running")	" GUI color and font settings
-  set guifont=Osaka-Mono:h20
+  set guifont=Monaco:h12
   set background=dark 
   set t_Co=256          " 256 color mode
   set cursorline        " highlight current line
-  colors moria
+  colors molokai
   highlight CursorLine          guibg=#003853 ctermbg=24  gui=none cterm=none
 else
 " terminal color settings
@@ -386,5 +386,18 @@ let g:agprg="/usr/local/bin/ag --column"
 " --- For indent guides"
 let g:indent_guides_guide_size=1
 
-
 set t_Co=256          " 256 color mode
+
+" -- For Vimwiki"
+let g:vimwiki_list = [{
+    \ 'path': '~/Dropbox/VimWiki/',
+    \ 'nested_syntaxes': {
+        \ 'c': 'c',
+        \ 'cpp': 'cpp',
+        \ 'java': 'java',
+        \ 'python': 'python',
+        \ 'scala': 'scala',
+        \ 'sh': 'sh',
+    \ },
+    \ }]
+
