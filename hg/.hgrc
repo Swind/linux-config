@@ -2,7 +2,7 @@
 username = Elsvent <elsvent@pi-coral.com>
 [extensions]
 hgext.graphlog =
-prompt = /home/elsvent/.myconfig/hg-prompt/prompt.py  
+prompt = /Users/elsvent/.myconfig/hg-prompt/prompt.py  
 [alias]
 log = log -r :
 slog = log -r : --style=/home/elsvent/.myconfig/mercurial-cli-templates/map-cmdline.slog

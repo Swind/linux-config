@@ -25,6 +25,7 @@ curl -L https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh | 
 ln -s $CONFIG_HOME/.vim/.vimrc .vimrc
 ln -s $CONFIG_HOME/.zshrc .zshrc
 ln -s $CONFIG_HOME/.tmux.conf .tmux.conf
+ln -s $CONFIG_HOME/hg/.hgrc .hgrc
 
 #Set git environment
 git config --global user.email "elsvent@gmail.com"
