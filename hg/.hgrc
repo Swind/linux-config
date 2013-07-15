@@ -1,6 +1,10 @@
 [ui]
-username = Swind <swind@pi-coral.com>
+username = Elsvent <elsvent@pi-coral.com>
+[extensions]
+hgext.graphlog =
+prompt = /home/elsvent/.myconfig/hg-prompt/prompt.py  
 [alias]
-slog = log --style=/root/.myconfig/mercurial-cli-templates/map-cmdline.slog
-nlog = log --style=/root/.myconfig/mercurial-cli-templates/map-cmdline.nlog
-sglog = glog --style=/root/.myconfig/mercurial-cli-templates/map-cmdline.sglog
+log = log -r :
+slog = log -r : --style=/home/elsvent/.myconfig/mercurial-cli-templates/map-cmdline.slog
+nlog = log -r : --style=/home/elsvent/.myconfig/mercurial-cli-templates/map-cmdline.nlog
+sglog = glog --style=/home/elsvent/.myconfig/mercurial-cli-templates/map-cmdline.sglog
