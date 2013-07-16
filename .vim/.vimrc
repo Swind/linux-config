@@ -24,10 +24,14 @@ Bundle 'yanagiis/cmake.vim'
 Bundle 'msanders/snipmate.vim'
 Bundle 'DoxyGen-Syntax'
 
+"For Python Coding
+Bundle "davidhalter/jedi-vim"
+
 "Formatter
 Bundle 'AutoClose'
 Bundle 'Align'
-Bundle 'tpope/vim-surround'
+
+"<Leader>ig
 Bundle 'Indent-Guides'
 
 "Move
