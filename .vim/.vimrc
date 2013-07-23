@@ -51,7 +51,7 @@ Bundle 'jistr/vim-nerdtree-tabs'
 Bundle 'kien/ctrlp.vim'
 
 "UI"
-Bundle 'Lokaltog/vim-powerline'
+Bundle 'Lokaltog/powerline'
 Bundle 'molokai'
 
 "Notes and Tools"
@@ -375,6 +375,7 @@ let g:tagbar_autofocus = 1
 let g:tagbar_left = 0
 
 " --- PowerLine
+set rtp+=~/.vim/bundle/powerline/powerline/bindings/vim
 let g:Powerline_symbols = 'fancy' " require fontpatcher
 
 " --- Clang_complete"
