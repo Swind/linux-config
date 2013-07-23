@@ -34,6 +34,7 @@ fi
 alias l="ls -lah"
 
 export TERM=xterm-256color
+
 ##################################################
 #
 # For FreeBSD Environment
