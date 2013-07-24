@@ -18,11 +18,11 @@ Bundle 'gmarik/vundle'
 
 "For C Coding"
 Bundle 'Tagbar'
-Bundle 'Rip-Rip/clang_complete'
 Bundle 'Twinside/vim-cuteErrorMarker'
 Bundle 'yanagiis/cmake.vim'
 Bundle 'msanders/snipmate.vim'
 Bundle 'DoxyGen-Syntax'
+Bundle 'Valloric/YouCompleteMe'
 
 "For Python Coding
 Bundle "davidhalter/jedi-vim"
