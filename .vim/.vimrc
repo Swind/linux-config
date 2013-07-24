@@ -150,7 +150,7 @@ endfunction
 
 " C/C++ specific settings
 autocmd FileType c,cpp,cc  set cindent comments=sr:/*,mb:*,el:*/,:// cino=>s,e0,n0,f0,{0,}0,^-1s,:0,=s,g0,h1s,p2,t0,+2,(2,)20,*30
-autocmd BufNewFile,BufRead *.c set formatprg=astyle\ --style=linux "gggqG"
+autocmd BufNewFile,BufRead *.c set formatprg=astyle\ --style=bsd "gggqG"
 
 "Restore cursor to file position in previous editing session
 set viminfo='10,\"100,:20,%,n~/.viminfo
