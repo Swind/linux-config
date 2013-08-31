@@ -20,16 +20,22 @@ Bundle 'gmarik/vundle'
 Bundle 'Tagbar'
 Bundle 'Twinside/vim-cuteErrorMarker'
 Bundle 'yanagiis/cmake.vim'
-Bundle 'msanders/snipmate.vim'
 Bundle 'DoxyGen-Syntax'
 Bundle 'Valloric/YouCompleteMe'
 
 " For Go Coding"
 Bundle 'go.vim'
+" Snippets"
+""Bundle 'ervandew/supertab'
+""Bundle 'UltiSnips'
+
+"For Python Coding
+Bundle "davidhalter/jedi-vim"
 
 "Formatter
 Bundle 'AutoClose'
-Bundle 'Align'
+Bundle 'junegunn/vim-easy-align'
+""Bundle 'Align'
 
 "<Leader>ig
 Bundle 'Indent-Guides'
@@ -42,6 +48,7 @@ Bundle 'tmhedberg/indent-motion'
 "Search, auto complete and others
 ""Bundle 'vim-scripts/YankRing.vim'
 ""Bundle 'SuperTab-continued.'
+Bundle 'vim-scripts/YankRing.vim'
 Bundle 'rking/ag.vim'
 
 "File Manager"
@@ -51,11 +58,13 @@ Bundle 'jistr/vim-nerdtree-tabs'
 Bundle 'kien/ctrlp.vim'
 
 "UI"
-Bundle 'bling/vim-airline'
 Bundle 'molokai'
+Bundle 'bling/vim-airline'
 
 "Notes and Tools"
 Bundle 'vimwiki'
+
+Bundle 'go-vim'
 
 " General Settings
 
@@ -151,7 +160,7 @@ endfunction
 
 " C/C++ specific settings
 autocmd FileType c,cpp,cc  set cindent comments=sr:/*,mb:*,el:*/,:// cino=>s,e0,n0,f0,{0,}0,^-1s,:0,=s,g0,h1s,p2,t0,+2,(2,)20,*30
-autocmd BufNewFile,BufRead *.c set formatprg=astyle\ --style=linux "gggqG"
+autocmd BufNewFile,BufRead *.c set formatprg=astyle\ --style=bsd "gggqG"
 
 "Restore cursor to file position in previous editing session
 set viminfo='10,\"100,:20,%,n~/.viminfo
@@ -353,7 +362,7 @@ endif
 let g:CommandTMaxHeight = 15
 
 " --- SuperTab
-let g:SuperTabDefaultCompletionType = "context"
+let g:SuperTabDefaultCompletionType = '<context>'
 
 " --- EasyMotion
 let g:EasyMotion_leader_key = '<Leader>m' " default is <Leader>w
@@ -363,27 +372,34 @@ hi link EasyMotionShade  Comment
 " --- NERDTree
 let g:NERDTreeWinPos = "right"
 
+" --- NEDRTree Tabs"
+nnoremap <silent> <F8> :NERDTreeTabsToggle<CR> 
+
 " --- TagBar
 " toggle TagBar with F7
 nnoremap <silent> <F7> :TagbarToggle<CR> 
 " --- save file and execute make
 nnoremap <silent> <F12> :w<CR>:make<CR> 
-" --- NEDRTree Tabs"
-nnoremap <silent> <F8> :NERDTreeTabsToggle<CR> 
+
+"" Ultisnips
+
+
+" --- YouCompleteMe"
+""let g:ycm_key_list_select_completion = ['<C-TAB>', '<Down>']
+""let g:ycm_key_list_previous_completion = ['<C-S-TAB>', '<Up>']
+nnoremap <leader>jd :YcmCompleter GoToDefinitionElseDeclaration<CR>
+
+"SuperTab"
+let g:SuperTabDefaultCompletionType = '<C-Tab>'
+
+" --- vim-easy-align"
+vnoremap <silent> <Enter> :EasyAlign<CR>
 
 " set focus to TagBar when opening it
 let g:tagbar_autofocus = 1
 let g:tagbar_left = 0
 
 " --- Clang_complete"
-let g:clang_use_library       = 1
-let g:clang_library_path      = "/root/Software/clang+llvm-3.3-amd64-freebsd9/lib"
-let g:clang_auto_select       = 1
-let g:clang_periodic_quickfix = 0
-let g:clang_snippets          = 1
-let g:clang_complete_macros   = 1
-
-let g:load_doxygen_syntax     = 1
 
 " --- For ag.vim
 let g:agprg="/usr/local/bin/ag --column"
@@ -408,3 +424,4 @@ let g:vimwiki_list = [{
 
 " air-line"
 ""let g:airline_powerline_fonts = 1
+

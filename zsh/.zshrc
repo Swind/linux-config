@@ -33,7 +33,6 @@ fi
 ##################################################
 alias l="ls -lah"
 
-export TERM=xterm-256color
 
 ##################################################
 #
@@ -58,6 +57,11 @@ if [[ $platform == "freebsd" ]]; then
 
     alias rz="lrz"
     alias sz="lsz"
+
+    #For Go
+    export GOROOT=/usr/local/go
+    export GOPATH=/root/Go
+    export PATH=$PATH:/usr/local/go/bin:$GOROOT/bin:$GOPATH/bin
 fi
 
 if [[ $platform == "mac" ]]; then
@@ -67,3 +71,4 @@ if [[ $platform == "mac" ]]; then
     export PATH=$PATH:$GOPATH/bin
 fi
 
+export TERM=xterm-256color
