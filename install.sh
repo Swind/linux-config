@@ -16,20 +16,18 @@ cd ~
 #Checkout my config
 git clone git://github.com/Swind/linux-config.git "$CONFIG_HOME"
 
-#install vundle for vim
-git clone https://github.com/gmarik/vundle.git ~/.vim/bundle/vundle
-
-#clone ulctip package
-git clone https://github.com/hychen/ucltip.git $CONFIG_HOME/python/ucltip_src
-
-#install oh-my-zsh
-#curl -L https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh | sh
-
-
+#Link all config files
 ln -s $CONFIG_HOME/.vim .vim
 ln -s .vim/.vimrc .vimrc
 ln -s $CONFIG_HOME/zsh/.zshrc .zshrc
 ln -s $CONFIG_HOME/tmux/.tmux.conf .tmux.conf
+ln -s $CONFIG_HOME/hg/.hgrc .hgrc
+
+#install vundle for vim
+git clone https://github.com/gmarik/vundle.git $CONFIG_HOME/.vim/bundle/vundle
+
+#install antigen
+git clone https://github.com/zsh-users/antigen.git $CONFIG_HOME/.myconfig/zsh/antigen
 
 #Set git environment
 git config --global user.email "idle.swind@gmail.com"

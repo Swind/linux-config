@@ -40,10 +40,11 @@ export TERM=xterm-256color
 # For FreeBSD Environment
 #
 #################################################
-C_COMPILER=clang
-CXX_COMPILER=clang++
 
 if [[ $platform == "freebsd" ]]; then
+    C_COMPILER=clang
+    CXX_COMPILER=clang++
+
     echo '===== Config FreeBSD Environment ====='
     export CC=/usr/bin/$C_COMPILER
     export CXX=/usr/bin/$CXX_COMPILER
@@ -57,5 +58,12 @@ if [[ $platform == "freebsd" ]]; then
 
     alias rz="lrz"
     alias sz="lsz"
+fi
+
+if [[ $platform == "mac" ]]; then
+    echo '===== Mac OSX Environment ====='
+    export GOROOT=/usr/local/Cellar/go/1.1
+    export GOPATH=~/Program/Go
+    export PATH=$PATH:$GOPATH/bin
 fi
 

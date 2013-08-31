@@ -24,8 +24,8 @@ Bundle 'msanders/snipmate.vim'
 Bundle 'DoxyGen-Syntax'
 Bundle 'Valloric/YouCompleteMe'
 
-"For Python Coding
-Bundle "davidhalter/jedi-vim"
+" For Go Coding"
+Bundle 'go.vim'
 
 "Formatter
 Bundle 'AutoClose'
@@ -40,8 +40,8 @@ Bundle 'vim-scripts/matchit.zip'
 Bundle 'tmhedberg/indent-motion'
 
 "Search, auto complete and others
-Bundle 'vim-scripts/YankRing.vim'
-Bundle 'SuperTab-continued.'
+""Bundle 'vim-scripts/YankRing.vim'
+""Bundle 'SuperTab-continued.'
 Bundle 'rking/ag.vim'
 
 "File Manager"
@@ -51,7 +51,7 @@ Bundle 'jistr/vim-nerdtree-tabs'
 Bundle 'kien/ctrlp.vim'
 
 "UI"
-Bundle 'Lokaltog/powerline'
+Bundle 'bling/vim-airline'
 Bundle 'molokai'
 
 "Notes and Tools"
@@ -79,7 +79,7 @@ syntax on		" syntax highlight
 set hlsearch		" search highlighting
 
 if has("gui_running")	" GUI color and font settings
-  set guifont=Monaco:h12
+  set guifont="Monaco":h12
   set background=dark 
   set t_Co=256          " 256 color mode
   set cursorline        " highlight current line
@@ -87,8 +87,9 @@ if has("gui_running")	" GUI color and font settings
   highlight CursorLine          guibg=#003853 ctermbg=24  gui=none cterm=none
 else
 " terminal color settings
-  set guifont=Osaka-Mono:h20
+  set guifont="Monaco":h20
   set background=dark 
+  set t_Co=256
   set cursorline        " highlight current line
   colors molokai
   highlight CursorLine          guibg=#003853 ctermbg=24  gui=none cterm=none
@@ -374,10 +375,6 @@ nnoremap <silent> <F8> :NERDTreeTabsToggle<CR>
 let g:tagbar_autofocus = 1
 let g:tagbar_left = 0
 
-" --- PowerLine
-set rtp+=~/.vim/bundle/powerline/powerline/bindings/vim
-let g:Powerline_symbols = 'fancy' " require fontpatcher
-
 " --- Clang_complete"
 let g:clang_use_library       = 1
 let g:clang_library_path      = "/root/Software/clang+llvm-3.3-amd64-freebsd9/lib"
@@ -409,3 +406,5 @@ let g:vimwiki_list = [{
     \ },
     \ }]
 
+" air-line"
+""let g:airline_powerline_fonts = 1
