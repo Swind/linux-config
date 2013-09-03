@@ -1,5 +1,6 @@
 CONFIG_HOME=.myconfig
 
+#Log 
 warn(){
 	echo "$1" >&2
 }
@@ -8,6 +9,12 @@ die(){
 	warn "$1"
 	exit 1
 }
+
+######################################################################
+#
+#   Main
+#
+######################################################################
 
 [ -e "~/.myconfig" ] && die "~/myconfig already exists."
 
@@ -27,10 +34,10 @@ ln -s $CONFIG_HOME/hg/.hgrc .hgrc
 git clone https://github.com/gmarik/vundle.git $CONFIG_HOME/.vim/bundle/vundle
 
 #install antigen
-git clone https://github.com/zsh-users/antigen.git $CONFIG_HOME/.myconfig/zsh/antigen
+git clone https://github.com/zsh-users/antigen.git $CONFIG_HOME/zsh/antigen
 
 #Set git environment
-git config --global user.email "idle.swind@gmail.com"
+git config --global user.email "swind@code-life.info"
 git config --global user.name "Swind"
 
 echo "Configuration files has been installed."
