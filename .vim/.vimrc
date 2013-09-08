@@ -24,7 +24,8 @@ Bundle 'DoxyGen-Syntax'
 Bundle 'Valloric/YouCompleteMe'
 
 " For Go Coding"
-Bundle 'go.vim'
+" Bundle 'go.vim'
+
 " Snippets"
 ""Bundle 'ervandew/supertab'
 ""Bundle 'UltiSnips'
@@ -33,9 +34,8 @@ Bundle 'go.vim'
 Bundle "davidhalter/jedi-vim"
 
 "Formatter
-Bundle 'AutoClose'
 Bundle 'junegunn/vim-easy-align'
-""Bundle 'Align'
+Bundle 'Align'
 
 "<Leader>ig
 Bundle 'Indent-Guides'

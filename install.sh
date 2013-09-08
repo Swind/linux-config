@@ -1,36 +1,69 @@
 CONFIG_HOME=.myconfig
 
-warn(){
-	echo "$1" >&2
+#####################################################
+#   Function
+#####################################################
+
+log_warn(){
+    echo "$1" >&2
 }
 
-die(){
-	warn "$1"
-	exit 1
+die()
+{
+    log_warn "$1"
+    exit 1
 }
 
-[ -e "~/.myconfig" ] && die "~/myconfig already exists."
+link_if_not_existing()
+{
+    [ -f $1 ] && ln -s $1 $2
+}
 
+#####################################################
+#   Link config files
+#####################################################
+config_files=(".vim" ".vimrc" "zsh/.zshrc" "tmux/.tmux.conf" "hg/.hgrc")
+
+link_config_files()
+{
+    for ((i=0; i<${#config_files[@]}; i++)); do
+
+        filename=${config_files[$i]}
+
+        if [ -f "$CONFIG_HOME/$filename" ]; then
+            echo "Create symbolic link $filename ..."
+            ln -s "$CONFIG_HOME/$filename" $(basename $filename)
+        fi
+
+    done
+}
+
+#####################################################
+#   Main
+#####################################################
 cd ~
+
+#If the .myconfig is existing, don't start the instsall.
+[ -e "$CONFIG_HOME" ] && die "$CONFIG_HOME already exists."
 
 #Checkout my config
 git clone git://github.com/Swind/linux-config.git "$CONFIG_HOME"
 
-#Link all config files
-ln -s $CONFIG_HOME/.vim .vim
-ln -s .vim/.vimrc .vimrc
-ln -s $CONFIG_HOME/zsh/.zshrc .zshrc
-ln -s $CONFIG_HOME/tmux/.tmux.conf .tmux.conf
-ln -s $CONFIG_HOME/hg/.hgrc .hgrc
+#Create symbolic link for config files
+link_config_files
 
 #install vundle for vim
-git clone https://github.com/gmarik/vundle.git $CONFIG_HOME/.vim/bundle/vundle
+if [ ! -e "$CONFIG_HOME/.vim/bundle/vundle" ]; then
+    git clone https://github.com/gmarik/vundle.git $CONFIG_HOME/.vim/bundle/vundle
+fi
 
 #install antigen
-git clone https://github.com/zsh-users/antigen.git $CONFIG_HOME/.myconfig/zsh/antigen
+if [ ! -e "$CONFIG_HOME/zsh/antigen" ]; then
+    git clone https://github.com/zsh-users/antigen.git $CONFIG_HOME/zsh/antigen
+fi
 
 #Set git environment
-git config --global user.email "idle.swind@gmail.com"
+git config --global user.email "swind@code-life.info"
 git config --global user.name "Swind"
 
 echo "Configuration files has been installed."
