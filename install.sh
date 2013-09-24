@@ -4,7 +4,8 @@ CONFIG_HOME=.myconfig
 #   Function
 #####################################################
 
-log_warn(){
+log_warn()
+{
     echo "$1" >&2
 }
 
