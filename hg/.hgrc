@@ -1,10 +1,20 @@
 [ui]
 username = Elsvent <elsvent@pi-coral.com>
+merge = vimdiff
+[merge-tools]
+vimdiff.executable = vim
+vimdiff.args = -d $base $local $ouput $other +close +close
 [extensions]
 hgext.graphlog =
 prompt = /Users/elsvent/.myconfig/hg-prompt/prompt.py  
+reviewboard = /Users/elsvent/.myconfig/hgreviewboard
 [alias]
 log = log -r :
-slog = log -r : --style=/home/elsvent/.myconfig/mercurial-cli-templates/map-cmdline.slog
-nlog = log -r : --style=/home/elsvent/.myconfig/mercurial-cli-templates/map-cmdline.nlog
-sglog = glog --style=/home/elsvent/.myconfig/mercurial-cli-templates/map-cmdline.sglog
+slog = log -r : --style=/Users/elsvent/.myconfig/mercurial-cli-templates/map-cmdline.slog
+nlog = log --style=/Users/elsvent/.myconfig/mercurial-cli-templates/map-cmdline.nlog
+sglog = glog --style=/Users/elsvent/.myconfig/mercurial-cli-templates/map-cmdline.sglog
+templog = log -r -1:-6 --template "{rev}:{desc}"
+[reviewboard]
+server = http://rb
+user = elsvent
+password = 6z7Dcv2X

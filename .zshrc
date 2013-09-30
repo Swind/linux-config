@@ -45,5 +45,13 @@ plugins=(git mercurial)
 source $ZSH/oh-my-zsh.sh
 
 # Customize to your needs...
-export PATH=$PATH:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games
+export PATH="/usr/local/bin:$PATH:/opt/local/bin"
 alias tmux='tmux -2'
+alias gorb='ssh root@rb'
+alias gohp='ssh root@hp1'
+alias goelsbsd='ssh root@elsbsd9'
+alias goscsitest='ssh root@scsitest'
+alias gopicoral='ssh picoral@picoral.dyns.cx'
+alias winvpn='ssh -L 5600:192.168.1.40:3389 picoral@picoral.dyns.cx'
+alias gonemo='ssh elsvent@173.245.93.156 -p 31415'
+export BAT_CHARGE='/Users/elsvent/.myconfig/zsh/battery.py'

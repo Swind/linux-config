@@ -399,3 +399,7 @@ let g:indent_guides_guide_size=1
 
 
 set t_Co=256          " 256 color mode
+" Tip 1235                                                                                                                                                                           
+" " Use embedded Python Calculator
+:command! -nargs=+ Calc :py print <args>
+:py from math import *
