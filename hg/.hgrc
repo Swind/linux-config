@@ -14,7 +14,3 @@ slog = log -r : --style=/Users/elsvent/.myconfig/mercurial-cli-templates/map-cmd
 nlog = log --style=/Users/elsvent/.myconfig/mercurial-cli-templates/map-cmdline.nlog
 sglog = glog --style=/Users/elsvent/.myconfig/mercurial-cli-templates/map-cmdline.sglog
 templog = log -r -1:-6 --template "{rev}:{desc}"
-[reviewboard]
-server = http://rb
-user = elsvent
-password = 6z7Dcv2X
