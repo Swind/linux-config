@@ -23,17 +23,14 @@ link_if_not_existing()
 #####################################################
 #   Link config files
 #####################################################
-config_files=(".vim" ".vimrc" "zsh/.zshrc" "tmux/.tmux.conf" "hg/.hgrc")
+config_files= ".vim .vimrc zsh/.zshrc tmux/.tmux.conf hg/.hgrc"
 
 link_config_files()
 {
-    for ((i=0; i<${#config_files[@]}; i++)); do
-
-        filename=${config_files[$i]}
-
+    for i in config_files; do
         if [ -f "$CONFIG_HOME/$filename" ]; then
             echo "Create symbolic link $filename ..."
-            ln -s "$CONFIG_HOME/$filename" $(basename $filename)
+            ln -s "$CONFIG_HOME/$filename" $(basename $i)
         fi
 
     done
@@ -54,14 +51,11 @@ git clone git://github.com/Swind/linux-config.git "$CONFIG_HOME"
 link_config_files
 
 #install vundle for vim
-if [ ! -e "$CONFIG_HOME/.vim/bundle/vundle" ]; then
-    git clone https://github.com/gmarik/vundle.git $CONFIG_HOME/.vim/bundle/vundle
-fi
+git clone https://github.com/gmarik/vundle.git $CONFIG_HOME/.vim/bundle/vundle
 
 #install antigen
-if [ ! -e "$CONFIG_HOME/zsh/antigen" ]; then
-    git clone https://github.com/zsh-users/antigen.git $CONFIG_HOME/zsh/antigen
-fi
+
+git clone https://github.com/zsh-users/antigen.git $CONFIG_HOME/zsh/antigen
 
 #Set git environment
 git config --global user.email "swind@code-life.info"
