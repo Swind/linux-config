@@ -64,6 +64,7 @@ Bundle 'bling/vim-airline'
 
 "Notes and Tools"
 Bundle 'vimwiki'
+Bundle 'georgefs/vim-copycat'
 
 " General Settings
 
@@ -432,3 +433,5 @@ let g:vimwiki_list = [{
 " air-line"
 ""let g:airline_powerline_fonts = 1
 
+" -- copy-cat"
+let g:copycat#auto_sync = 1
