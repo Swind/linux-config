@@ -20,15 +20,16 @@ Bundle 'gmarik/vundle'
 Bundle 'Tagbar'
 Bundle 'Twinside/vim-cuteErrorMarker'
 Bundle 'yanagiis/cmake.vim'
-Bundle 'DoxyGen-Syntax'
-Bundle 'Valloric/YouCompleteMe'
+Bundle 'clang-complete'
+" Bundle 'Valloric/YouCompleteMe'
+" Bundle 'DoxyGen-Syntax'
 
 " For Go Coding"
 " Bundle 'go.vim'
 
 " Snippets"
 ""Bundle 'ervandew/supertab'
-""Bundle 'UltiSnips'
+Bundle 'UltiSnips'
 
 "For Python Coding
 Bundle "davidhalter/jedi-vim"
@@ -63,8 +64,6 @@ Bundle 'bling/vim-airline'
 
 "Notes and Tools"
 Bundle 'vimwiki'
-
-Bundle 'go-vim'
 
 " General Settings
 
@@ -387,7 +386,7 @@ nnoremap <silent> <F12> :w<CR>:make<CR>
 " --- YouCompleteMe"
 ""let g:ycm_key_list_select_completion = ['<C-TAB>', '<Down>']
 ""let g:ycm_key_list_previous_completion = ['<C-S-TAB>', '<Up>']
-nnoremap <leader>jd :YcmCompleter GoToDefinitionElseDeclaration<CR>
+" nnoremap <leader>jd :YcmCompleter GoToDefinitionElseDeclaration<CR>
 
 "SuperTab"
 let g:SuperTabDefaultCompletionType = '<C-Tab>'
@@ -400,6 +399,14 @@ let g:tagbar_autofocus = 1
 let g:tagbar_left = 0
 
 " --- Clang_complete"
+let g:clang_use_library=1
+let g:clang_library_path="/root/Software/clang+llvm-3.3-amd64-freebsd9/lib"
+let g:clang_hl_errors=1
+let g:clang_snippets=1
+let g:clang_snippets_engine="ultisnips"
+let g:clang_auto_user_options="path, .clang_complete"
+let g:clang_complete_macros=1
+let g:clang_complete_patterns=1
 
 " --- For ag.vim
 let g:agprg="/usr/local/bin/ag --column"
