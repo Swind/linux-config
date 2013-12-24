@@ -20,7 +20,7 @@ git clone git://github.com/Elsvent/Shell-Config.git "$CONFIG_HOME"
 git clone https://github.com/gmarik/vundle.git ~/.vim/bundle/vundle
 
 #install oh-my-zsh
-wget https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh | sh
+wget -no-check-certificate -O - https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh | sh
 
 ln -s $CONFIG_HOME/.vim/.vimrc .vimrc
 ln -s $CONFIG_HOME/.zshrc .zshrc
