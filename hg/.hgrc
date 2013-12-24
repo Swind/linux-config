@@ -5,6 +5,8 @@ merge = vimdiff
 vimdiff.executable = vim
 vimdiff.args = -d $base $local $ouput $other +close +close
 [extensions]
+color =
+hgext.extdiff =
 hgext.graphlog =
 prompt = /Users/elsvent/.myconfig/hg-prompt/prompt.py  
 reviewboard = /Users/elsvent/.myconfig/hgreviewboard
@@ -14,3 +16,32 @@ slog = log -r : --style=/Users/elsvent/.myconfig/mercurial-cli-templates/map-cmd
 nlog = log --style=/Users/elsvent/.myconfig/mercurial-cli-templates/map-cmdline.nlog
 sglog = glog --style=/Users/elsvent/.myconfig/mercurial-cli-templates/map-cmdline.sglog
 templog = log -r -1:-6 --template "{rev}:{desc}"
+
+[defaults]
+# suppress noisy extdiff header message
+cdiff = -q
+
+[extdiff]
+cmd.cdiff = colordiff
+opts.cdiff = -uprN
+cmd.opendiff = fmdiff
+
+[color]
+status.modified = blue bold underline red_background
+status.added = green bold
+status.removed = red bold blue_background
+status.deleted = cyan bold underline
+status.unknown = magenta bold underline
+status.ignored = black bold
+qseries.applied = blue bold underline
+qseries.unapplied = black bold
+qseries.missing = red bold
+diff.diffline = bold
+diff.extended = cyan bold
+diff.file_a = red bold
+diff.file_b = green bold
+diff.hunk = magenta
+diff.deleted = red
+diff.inserted = green
+diff.changed = white
+diff.trailingwhitespace = bold red_background
