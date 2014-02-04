@@ -68,7 +68,7 @@ if [[ $platform == "mac" ]]; then
     echo '===== Mac OSX Environment ====='
     export GOROOT=/usr/local/Cellar/go/1.1
     export GOPATH=~/Program/Go
-    export PATH=$PATH:$GOPATH/bin
+    export PATH=/usr/local/bin:$PATH:$GOPATH/bin
 fi
 
 export TERM=xterm-256color

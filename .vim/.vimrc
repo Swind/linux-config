@@ -105,7 +105,10 @@ else
   highlight CursorLine          guibg=#003853 ctermbg=24  gui=none cterm=none
 endif
 
-set clipboard=unnamed	" yank to the system register (*) by default
+if $TMUX == ''
+    set clipboard=unnamed " yank to the system register (*) by defaultd
+endif
+
 set showmatch		" Cursor shows matching ) and }
 set showmode		" Show current mode
 set wildchar=<TAB>	" start wild expansion in the command line using <TAB>
