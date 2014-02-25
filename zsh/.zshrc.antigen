@@ -10,7 +10,7 @@ antigen-bundle git
 antigen-bundle mercurial
 
 # Load the theme.
-antigen-theme gentoo
+antigen-theme $MY_CONFIG_HOME/zsh/themes/3den.zsh-theme
 
 # Tell antigen that you're done.
 antigen-apply
