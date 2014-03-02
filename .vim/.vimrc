@@ -29,7 +29,7 @@ Bundle 'clang-complete'
 
 " Snippets"
 ""Bundle 'ervandew/supertab'
-Bundle 'UltiSnips'
+"Bundle 'UltiSnips'
 
 "For Python Coding
 Bundle "davidhalter/jedi-vim"
