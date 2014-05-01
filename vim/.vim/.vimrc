@@ -21,15 +21,6 @@ Bundle 'Tagbar'
 Bundle 'Twinside/vim-cuteErrorMarker'
 Bundle 'yanagiis/cmake.vim'
 Bundle 'clang-complete'
-" Bundle 'Valloric/YouCompleteMe'
-" Bundle 'DoxyGen-Syntax'
-
-" For Go Coding"
-" Bundle 'go.vim'
-
-" Snippets"
-""Bundle 'ervandew/supertab'
-"Bundle 'UltiSnips'
 
 "For Python Coding
 Bundle "davidhalter/jedi-vim"
@@ -47,8 +38,6 @@ Bundle 'vim-scripts/matchit.zip'
 Bundle 'tmhedberg/indent-motion'
 
 "Search, auto complete and others
-""Bundle 'vim-scripts/YankRing.vim'
-""Bundle 'SuperTab-continued.'
 Bundle 'vim-scripts/YankRing.vim'
 Bundle 'rking/ag.vim'
 
@@ -63,7 +52,6 @@ Bundle 'molokai'
 Bundle 'bling/vim-airline'
 
 "Notes and Tools"
-Bundle 'vimwiki'
 Bundle 'georgefs/vim-copycat'
 
 " General Settings
@@ -74,7 +62,6 @@ set history=50		" keep 50 lines of command line history
 set ruler		" show the cursor position all the time
 set autoread		" auto read when file is changed from outside
 set nu                  " show line number
-
 
 filetype on           " Enable filetype detection
 filetype indent on    " Enable filetype-specific indenting
@@ -259,10 +246,6 @@ cmap cd. lcd %:p:h
 " PROGRAMMING SHORTCUTS
 "--------------------------------------------------------------------------- 
 
-" Ctrl-[ jump out of the tag stack (undo Ctrl-])
-" map <C-[> :po<CR>
-
-
 " ,g generates the header guard
 map <leader>g :call IncludeGuard()<CR>
 fun! IncludeGuard()
@@ -361,9 +344,6 @@ endif
 " --- Command-T
 let g:CommandTMaxHeight = 15
 
-" --- SuperTab
-let g:SuperTabDefaultCompletionType = '<context>'
-
 " --- EasyMotion
 let g:EasyMotion_leader_key = '<Leader>m' " default is <Leader>w
 hi link EasyMotionTarget ErrorMsg
@@ -381,14 +361,6 @@ nnoremap <silent> <F7> :TagbarToggle<CR>
 " --- save file and execute make
 nnoremap <silent> <F12> :w<CR>:make<CR> 
 
-"" Ultisnips
-
-
-" --- YouCompleteMe"
-""let g:ycm_key_list_select_completion = ['<C-TAB>', '<Down>']
-""let g:ycm_key_list_previous_completion = ['<C-S-TAB>', '<Up>']
-" nnoremap <leader>jd :YcmCompleter GoToDefinitionElseDeclaration<CR>
-
 "SuperTab"
 let g:SuperTabDefaultCompletionType = '<C-Tab>'
 
@@ -401,7 +373,7 @@ let g:tagbar_left = 0
 
 " --- Clang_complete"
 let g:clang_use_library=1
-let g:clang_library_path="/root/Software/clang+llvm-3.3-amd64-freebsd9/lib"
+let g:clang_library_path="~/Software/clang/lib"
 let g:clang_hl_errors=1
 let g:clang_snippets=1
 let g:clang_snippets_engine="ultisnips"
@@ -410,28 +382,15 @@ let g:clang_complete_macros=1
 let g:clang_complete_patterns=1
 
 " --- For ag.vim
-let g:agprg="/usr/local/bin/ag --column"
+let g:agprg="ag --column"
 
 " --- For indent guides"
 let g:indent_guides_guide_size=1
 
 set t_Co=256          " 256 color mode
 
-" -- For Vimwiki"
-let g:vimwiki_list = [{
-    \ 'path': '~/Dropbox/VimWiki/',
-    \ 'nested_syntaxes': {
-        \ 'c': 'c',
-        \ 'cpp': 'cpp',
-        \ 'java': 'java',
-        \ 'python': 'python',
-        \ 'scala': 'scala',
-        \ 'sh': 'sh',
-    \ },
-    \ }]
-
-" air-line"
-""let g:airline_powerline_fonts = 1
-
 " -- copy-cat"
 let g:copycat#auto_sync = 1
+
+" -- fish
+set shell=/usr/bin/bash
