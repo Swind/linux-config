@@ -3,6 +3,29 @@ CONFIG_HOME=.myconfig
 #####################################################
 #   Function
 #####################################################
+print_line() { #{{{
+printf "%$(tput cols)s\n"|tr ' ' '-'
+} #}}}
+print_title() { #{{{
+clear
+print_line
+echo -e "# ${Bold}$1${Reset}"
+print_line
+echo ""
+} #}}}
+print_info() { #{{{
+#Console width number
+T_COLS=`tput cols`
+echo -e "${Bold}$1${Reset}\n" | fold -sw $(( $T_COLS - 18 )) | sed 's/^/\t/'
+} #}}}
+print_warning() { #{{{
+T_COLS=`tput cols`
+echo -e "${BYellow}$1${Reset}\n" | fold -sw $(( $T_COLS - 1 ))
+} #}}}
+print_danger() { #{{{
+T_COLS=`tput cols`
+echo -e "${BRed}$1${Reset}\n" | fold -sw $(( $T_COLS - 1 ))
+} #}}}
 
 log_warn()
 {
@@ -23,7 +46,7 @@ link_if_not_existing()
 #####################################################
 #   Link config files
 #####################################################
-config_files= ".vim .vimrc zsh/.zshrc tmux/.tmux.conf hg/.hgrc"
+config_files= "vim/.vim vim/.vim/.vimrc tmux/.tmux.conf hg/.hgrc git/.gitconfig"
 
 link_config_files()
 {
@@ -49,17 +72,6 @@ git clone git://github.com/Swind/linux-config.git "$CONFIG_HOME"
 
 #Create symbolic link for config files
 link_config_files
-
-#install vundle for vim
-git clone https://github.com/gmarik/vundle.git $CONFIG_HOME/.vim/bundle/vundle
-
-#install antigen
-
-git clone https://github.com/zsh-users/antigen.git $CONFIG_HOME/zsh/antigen
-
-#Set git environment
-git config --global user.email "swind@code-life.info"
-git config --global user.name "Swind"
 
 echo "Configuration files has been installed."
 cd "$CONFIG_HOME"
