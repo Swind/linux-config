@@ -6,6 +6,7 @@ CONFIG_HOME=.myconfig
 print_line() { #{{{
 printf "%$(tput cols)s\n"|tr ' ' '-'
 } #}}}
+
 print_title() { #{{{
 clear
 print_line
@@ -13,28 +14,26 @@ echo -e "# ${Bold}$1${Reset}"
 print_line
 echo ""
 } #}}}
+
 print_info() { #{{{
 #Console width number
 T_COLS=`tput cols`
 echo -e "${Bold}$1${Reset}\n" | fold -sw $(( $T_COLS - 18 )) | sed 's/^/\t/'
 } #}}}
+
 print_warning() { #{{{
 T_COLS=`tput cols`
 echo -e "${BYellow}$1${Reset}\n" | fold -sw $(( $T_COLS - 1 ))
 } #}}}
+
 print_danger() { #{{{
 T_COLS=`tput cols`
 echo -e "${BRed}$1${Reset}\n" | fold -sw $(( $T_COLS - 1 ))
 } #}}}
 
-log_warn()
-{
-    echo "$1" >&2
-}
-
 die()
 {
-    log_warn "$1"
+    print_danger "$1"
     exit 1
 }
 
