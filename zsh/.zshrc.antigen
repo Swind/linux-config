@@ -8,6 +8,7 @@ antigen-bundle autojump
 antigen-bundle zsh-users/zsh-syntax-highlighting
 antigen-bundle git
 antigen-bundle mercurial
+antigen-bundle vi-mode 
 
 # Load the theme.
 antigen-theme $MY_CONFIG_HOME/zsh/themes/3den.zsh-theme

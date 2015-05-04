@@ -15,15 +15,16 @@ call vundle#rc()
 "Let vundle manage Vundle
 "Required!
 Bundle 'gmarik/vundle'
+Bundle 'Rykka/clickable.vim'
 
 "For C Coding"
 Bundle 'Tagbar'
 Bundle 'Twinside/vim-cuteErrorMarker'
-Bundle 'yanagiis/cmake.vim'
 Bundle 'clang-complete'
 
 "For Python Coding
-Bundle "davidhalter/jedi-vim"
+Bundle 'scrooloose/syntastic'
+Bundle 'klen/python-mode'
 
 "Formatter
 Bundle 'junegunn/vim-easy-align'
@@ -38,6 +39,7 @@ Bundle 'vim-scripts/matchit.zip'
 Bundle 'tmhedberg/indent-motion'
 
 "Search, auto complete and others
+Bundle 'SuperTab'
 Bundle 'vim-scripts/YankRing.vim'
 Bundle 'rking/ag.vim'
 
@@ -46,15 +48,26 @@ Bundle 'scrooloose/nerdcommenter'
 Bundle 'scrooloose/nerdtree'
 Bundle 'jistr/vim-nerdtree-tabs'
 Bundle 'kien/ctrlp.vim'
+Bundle 'gcmt/surfer.vim'
 
 "UI"
 Bundle 'molokai'
 Bundle 'bling/vim-airline'
 
-"Notes and Tools"
-Bundle 'georgefs/vim-copycat'
+"Tools"
+"Bundle 'georgefs/vim-copycat'
 
-" General Settings
+"Restructure Text"
+Bundle 'Rykka/riv.vim'
+
+" Markdown
+Plugin 'godlygeek/tabular'
+Plugin 'plasticboy/vim-markdown'
+
+" Golang
+Plugin 'fatih/vim-go'
+
+" General Setting
 
 set nocompatible	" not compatible with the old-fashion vi mode
 set bs=2		" allow backspacing over everything in insert mode
@@ -63,10 +76,10 @@ set ruler		" show the cursor position all the time
 set autoread		" auto read when file is changed from outside
 set nu                  " show line number
 
+
 filetype on           " Enable filetype detection
 filetype indent on    " Enable filetype-specific indenting
 filetype plugin on    " Enable filetype-specific plugins
-
 
 " auto reload vimrc when editing it
 autocmd! bufwritepost .vimrc source ~/.vimrc
@@ -75,7 +88,7 @@ syntax on		" syntax highlight
 set hlsearch		" search highlighting
 
 if has("gui_running")	" GUI color and font settings
-  set guifont="Monaco":h12
+  set guifont="PragmataPro":h12
   set background=dark 
   set t_Co=256          " 256 color mode
   set cursorline        " highlight current line
@@ -83,7 +96,7 @@ if has("gui_running")	" GUI color and font settings
   highlight CursorLine          guibg=#003853 ctermbg=24  gui=none cterm=none
 else
 " terminal color settings
-  set guifont="Monaco":h20
+  set guifont="PragmataPro":h20
   set background=dark 
   set t_Co=256
   set cursorline        " highlight current line
@@ -119,7 +132,7 @@ set tm=500
    set softtabstop=4
    set shiftwidth=4 
 
-   au FileType Makefile set noexpandtab
+"   au FileType Makefile set noexpandtab
 "}      							
 
 " status line {
@@ -220,31 +233,16 @@ nmap <leader>p :set paste!<BAR>set paste?<CR>
 vnoremap < <gv
 vnoremap > >gv
 
-
 " :cd. change working directory to that of the current file
 cmap cd. lcd %:p:h
-
-" Writing Restructured Text (Sphinx Documentation) {
-   " Ctrl-u 1:    underline Parts w/ #'s
-   noremap  <C-u>1 yyPVr#yyjp
-   inoremap <C-u>1 <esc>yyPVr#yyjpA
-   " Ctrl-u 2:    underline Chapters w/ *'s
-   noremap  <C-u>2 yyPVr*yyjp
-   inoremap <C-u>2 <esc>yyPVr*yyjpA
-   " Ctrl-u 3:    underline Section Level 1 w/ ='s
-   noremap  <C-u>3 yypVr=
-   inoremap <C-u>3 <esc>yypVr=A
-   " Ctrl-u 4:    underline Section Level 2 w/ -'s
-   noremap  <C-u>4 yypVr-
-   inoremap <C-u>4 <esc>yypVr-A
-   " Ctrl-u 5:    underline Section Level 3 w/ ^'s
-   noremap  <C-u>5 yypVr^
-   inoremap <C-u>5 <esc>yypVr^A
-"}
 
 "--------------------------------------------------------------------------- 
 " PROGRAMMING SHORTCUTS
 "--------------------------------------------------------------------------- 
+
+" Ctrl-[ jump out of the tag stack (undo Ctrl-])
+" map <C-[> :po<CR>
+
 
 " ,g generates the header guard
 map <leader>g :call IncludeGuard()<CR>
@@ -329,7 +327,7 @@ let g:tex_flavor='latex'
 " --- AutoClose - Inserts matching bracket, paren, brace or quote 
 " fixed the arrow key problems caused by AutoClose
 if !has("gui_running")	
-   set term=linux
+   "set term=linux
    imap OA <ESC>ki
    imap OB <ESC>ji
    imap OC <ESC>li
@@ -340,9 +338,6 @@ if !has("gui_running")
    nmap OC l
    nmap OD h
 endif
-
-" --- Command-T
-let g:CommandTMaxHeight = 15
 
 " --- EasyMotion
 let g:EasyMotion_leader_key = '<Leader>m' " default is <Leader>w
@@ -358,11 +353,12 @@ nnoremap <silent> <F8> :NERDTreeTabsToggle<CR>
 " --- TagBar
 " toggle TagBar with F7
 nnoremap <silent> <F7> :TagbarToggle<CR> 
+
 " --- save file and execute make
 nnoremap <silent> <F12> :w<CR>:make<CR> 
 
-"SuperTab"
-let g:SuperTabDefaultCompletionType = '<C-Tab>'
+" --- execute python file
+nnoremap <buffer> <F11> :exec '!python' shellescape(@%, 1)<cr>
 
 " --- vim-easy-align"
 vnoremap <silent> <Enter> :EasyAlign<CR>
@@ -373,7 +369,7 @@ let g:tagbar_left = 0
 
 " --- Clang_complete"
 let g:clang_use_library=1
-let g:clang_library_path="~/Software/clang/lib"
+let g:clang_library_path="/root/Software/clang+llvm-3.3-amd64-freebsd9/lib"
 let g:clang_hl_errors=1
 let g:clang_snippets=1
 let g:clang_snippets_engine="ultisnips"
@@ -382,15 +378,45 @@ let g:clang_complete_macros=1
 let g:clang_complete_patterns=1
 
 " --- For ag.vim
-let g:agprg="ag --column"
+let g:agprg="/usr/bin/ag --column"
 
 " --- For indent guides"
 let g:indent_guides_guide_size=1
 
 set t_Co=256          " 256 color mode
 
+" -- SuperTab
+let g:SuperTabDefaultCompletionType = "<c-n>"
+
+" air-line"
+" let g:airline_powerline_fonts = 1
+
 " -- copy-cat"
 let g:copycat#auto_sync = 1
 
-" -- fish
-set shell=/usr/bin/bash
+" -- for fish shell
+if &shell =~# 'fish$'
+    set shell=sh
+endif
+
+" -- jedi-vim
+let g:jedi#goto_assignments_command = "<leader>g"
+let g:jedi#goto_definitions_command = "<leader>d"
+let g:jedi#completions_command = "<C-Space>"
+let g:jedi#rename_command = "<leader>r"
+let g:jedi#show_call_signatures = "1"
+
+let g:syntastic_python_checkers=["flake8"]
+let g:syntastic_python_flake8_args="--ignore=E501,E265,W601"
+
+" -- pymode
+let g:pymode_lint_ignore = "E501"
+
+" vim-markdown
+let g:tagbar_type_mkd = {
+    \ 'ctagstype' : 'markdown',
+    \ 'kinds' : [
+        \ 'h:Headline'
+    \ ],
+    \ 'sort' : 0,
+\ }
