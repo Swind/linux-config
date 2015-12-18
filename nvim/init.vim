@@ -1,71 +1,47 @@
-" vgod's vimrc
-" Tsung-Hsiang (Sean) Chang <vgod@vgod.tw>
-" Fork me on GITHUB  https://github.com/vgod/vimrc
-
-" read https://github.com/vgod/vimrc/blob/master/README.md for more info
-
-
-" For vundle: auto load all plugins in .vim/bundle
-"
-" vundle {
-set rtp+=~/.vim/bundle/vundle/
-call vundle#rc()
+" Plug {
+call plug#begin('~/.config/nvim/bundle')
 " }
 
-"Let vundle manage Vundle
 "Required!
-Bundle 'gmarik/vundle'
-Bundle 'Rykka/clickable.vim'
+Plug 'Rykka/clickable.vim'
 
 "For C Coding"
-Bundle 'Tagbar'
-Bundle 'Twinside/vim-cuteErrorMarker'
-Bundle 'clang-complete'
+Plug 'Tagbar'
+Plug 'Twinside/vim-cuteErrorMarker'
 
 "For Python Coding
-Bundle 'scrooloose/syntastic'
-Bundle 'klen/python-mode'
+Plug 'scrooloose/syntastic'
+Plug 'klen/python-mode'
 
 "Formatter
-Bundle 'junegunn/vim-easy-align'
-Bundle 'Align'
+Plug 'junegunn/vim-easy-align'
+Plug 'Align'
 
 "<Leader>ig
-Bundle 'Indent-Guides'
+Plug 'Indent-Guides'
 
 "Move
-Bundle 'Lokaltog/vim-easymotion'
-Bundle 'vim-scripts/matchit.zip'
-Bundle 'tmhedberg/indent-motion'
-
-"Search, auto complete and others
-Bundle 'SuperTab'
-Bundle 'vim-scripts/YankRing.vim'
-Bundle 'rking/ag.vim'
+Plug 'Lokaltog/vim-easymotion'
+Plug 'vim-scripts/matchit.zip'
+Plug 'tmhedberg/indent-motion'
 
 "File Manager"
-Bundle 'scrooloose/nerdcommenter'
-Bundle 'scrooloose/nerdtree'
-Bundle 'jistr/vim-nerdtree-tabs'
-Bundle 'kien/ctrlp.vim'
-Bundle 'gcmt/surfer.vim'
+Plug 'scrooloose/nerdcommenter'
+Plug 'scrooloose/nerdtree'
+Plug 'jistr/vim-nerdtree-tabs'
 
 "UI"
-Bundle 'molokai'
-Bundle 'bling/vim-airline'
-
-"Tools"
-"Bundle 'georgefs/vim-copycat'
+Plug 'molokai'
+Plug 'bling/vim-airline'
 
 "Restructure Text"
-Bundle 'Rykka/riv.vim'
+Plug 'Rykka/riv.vim'
 
 " Markdown
-Plugin 'godlygeek/tabular'
-Plugin 'plasticboy/vim-markdown'
+Plug 'godlygeek/tabular'
+Plug 'plasticboy/vim-markdown'
 
-" Golang
-Plugin 'fatih/vim-go'
+call plug#end()
 
 " General Setting
 

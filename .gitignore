@@ -1,2 +1,2 @@
-bundle
-vundle
+nvim/bundle
+nvim/autoload/plug.vim
