@@ -29,6 +29,7 @@ Plug 'tmhedberg/indent-motion'
 Plug 'scrooloose/nerdcommenter'
 Plug 'scrooloose/nerdtree'
 Plug 'jistr/vim-nerdtree-tabs'
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 
 "UI"
 Plug 'molokai'
@@ -105,8 +106,8 @@ set tm=500
 
 " TAB setting{
    set expandtab        "replace <TAB> with spaces
-   set softtabstop=4
-   set shiftwidth=4 
+   set softtabstop=2
+   set shiftwidth=2
 
 "   au FileType Makefile set noexpandtab
 "}      							
@@ -329,12 +330,6 @@ nnoremap <silent> <F8> :NERDTreeTabsToggle<CR>
 " --- TagBar
 " toggle TagBar with F7
 nnoremap <silent> <F7> :TagbarToggle<CR> 
-
-" --- save file and execute make
-nnoremap <silent> <F12> :w<CR>:make<CR> 
-
-" --- execute python file
-nnoremap <buffer> <F11> :exec '!python' shellescape(@%, 1)<cr>
 
 " --- vim-easy-align"
 vnoremap <silent> <Enter> :EasyAlign<CR>
