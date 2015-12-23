@@ -41,6 +41,9 @@ bindsym $mod+d exec dmenu_run
 # shipping a .desktop file. It is a wrapper around dmenu, so you need that
 # installed.
 # bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
+exec --no-startup-id xrandr --output LVDS-1 --primary
+exec --no-startup-id fcitx 
+exec --no-startup-id cmst
 
 # change focus
 bindsym $mod+j focus left
@@ -153,5 +156,5 @@ bindsym $mod+r mode "resize"
 # finds out, if available)
 bar {
         status_command i3status
-        tray_output primary
+        tray_output primary 
 }

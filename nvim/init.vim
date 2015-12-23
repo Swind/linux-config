@@ -42,6 +42,9 @@ Plug 'Rykka/riv.vim'
 Plug 'godlygeek/tabular'
 Plug 'plasticboy/vim-markdown'
 
+" LiveScript
+Plug 'gkz/vim-ls'
+
 call plug#end()
 
 " General Setting
@@ -58,27 +61,22 @@ filetype on           " Enable filetype detection
 filetype indent on    " Enable filetype-specific indenting
 filetype plugin on    " Enable filetype-specific plugins
 
-" auto reload vimrc when editing it
-autocmd! bufwritepost .vimrc source ~/.vimrc
-
 syntax on		" syntax highlight
 set hlsearch		" search highlighting
 
 if has("gui_running")	" GUI color and font settings
-  set guifont="PragmataPro":h12
+  set guifont="Monaco for Powerline":h12
   set background=dark 
   set t_Co=256          " 256 color mode
   set cursorline        " highlight current line
   colors molokai
-  highlight CursorLine          guibg=#003853 ctermbg=24  gui=none cterm=none
 else
 " terminal color settings
-  set guifont="PragmataPro":h20
+  set guifont="Monaco for Powerline":h20
   set background=dark 
   set t_Co=256
   set cursorline        " highlight current line
   colors molokai
-  highlight CursorLine          guibg=#003853 ctermbg=24  gui=none cterm=none
 endif
 
 set clipboard=unnamed	" yank to the system register (*) by default
@@ -338,16 +336,6 @@ vnoremap <silent> <Enter> :EasyAlign<CR>
 let g:tagbar_autofocus = 1
 let g:tagbar_left = 0
 
-" --- Clang_complete"
-let g:clang_use_library=1
-let g:clang_library_path="/root/Software/clang+llvm-3.3-amd64-freebsd9/lib"
-let g:clang_hl_errors=1
-let g:clang_snippets=1
-let g:clang_snippets_engine="ultisnips"
-let g:clang_auto_user_options="path, .clang_complete"
-let g:clang_complete_macros=1
-let g:clang_complete_patterns=1
-
 " --- For ag.vim
 let g:agprg="/usr/bin/ag --column"
 
@@ -360,15 +348,10 @@ set t_Co=256          " 256 color mode
 let g:SuperTabDefaultCompletionType = "<c-n>"
 
 " air-line"
-" let g:airline_powerline_fonts = 1
-
-" -- copy-cat"
-let g:copycat#auto_sync = 1
-
-" -- for fish shell
-if &shell =~# 'fish$'
-    set shell=sh
-endif
+let g:airline_powerline_fonts = 1
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#left_sep = ' '
+let g:airline#extensions#tabline#left_alt_sep = '|'
 
 " -- jedi-vim
 let g:jedi#goto_assignments_command = "<leader>g"
