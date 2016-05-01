@@ -1,49 +1,28 @@
+" Automatic installation of vim-plug
+source ~/.config/nvim/configs/auto_install_plug.vim
+
 " Plug {
-call plug#begin('~/.config/nvim/bundle')
+call plug#begin()
 " }
-
-"Required!
-Plug 'Rykka/clickable.vim'
-
-"For C Coding"
-Plug 'Tagbar'
-Plug 'Twinside/vim-cuteErrorMarker'
-
-"For Python Coding
-Plug 'scrooloose/syntastic'
-Plug 'klen/python-mode'
-
-"Formatter
-Plug 'junegunn/vim-easy-align'
-Plug 'Align'
-
-"<Leader>ig
-Plug 'Indent-Guides'
-
-"Move
-Plug 'Lokaltog/vim-easymotion'
-Plug 'vim-scripts/matchit.zip'
-Plug 'tmhedberg/indent-motion'
-
-"File Manager"
-Plug 'scrooloose/nerdcommenter'
-Plug 'scrooloose/nerdtree'
-Plug 'jistr/vim-nerdtree-tabs'
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 
 "UI"
 Plug 'molokai'
 Plug 'bling/vim-airline'
 
-"Restructure Text"
-Plug 'Rykka/riv.vim'
+"Golang
+Plug 'fatih/vim-go'
 
-" Markdown
-Plug 'godlygeek/tabular'
-Plug 'plasticboy/vim-markdown'
+"Syntax checking hacks for vim
+source ~/.config/nvim/configs/syntastic.vim
 
-" LiveScript
-Plug 'gkz/vim-ls'
+"Autocomplete
+source ~/.config/nvim/configs/autocomplete.vim
+
+" File manager and search
+source ~/.config/nvim/configs/fzf.vim
+
+"JavaScript
+source ~/.config/nvim/configs/javascript.vim
 
 call plug#end()
 
@@ -56,7 +35,6 @@ set ruler		" show the cursor position all the time
 set autoread		" auto read when file is changed from outside
 set nu                  " show line number
 
-
 filetype on           " Enable filetype detection
 filetype indent on    " Enable filetype-specific indenting
 filetype plugin on    " Enable filetype-specific plugins
@@ -64,20 +42,12 @@ filetype plugin on    " Enable filetype-specific plugins
 syntax on		" syntax highlight
 set hlsearch		" search highlighting
 
-if has("gui_running")	" GUI color and font settings
-  set guifont="Monaco for Powerline":h12
-  set background=dark 
-  set t_Co=256          " 256 color mode
-  set cursorline        " highlight current line
-  colors molokai
-else
 " terminal color settings
-  set guifont="Monaco for Powerline":h20
-  set background=dark 
-  set t_Co=256
-  set cursorline        " highlight current line
-  colors molokai
-endif
+set guifont="Monaco for Powerline":h20
+set background=dark 
+set t_Co=256
+set cursorline        " highlight current line
+colors molokai
 
 set clipboard=unnamed	" yank to the system register (*) by default
 set showmatch		" Cursor shows matching ) and }
@@ -109,47 +79,6 @@ set tm=500
 
 "   au FileType Makefile set noexpandtab
 "}      							
-
-" status line {
-set laststatus=2
-set statusline=\ %{HasPaste()}%<%-15.25(%f%)%m%r%h\ %w\ \ 
-set statusline+=\ \ \ [%{&ff}/%Y] 
-set statusline+=\ \ \ %<%20.30(%{hostname()}:%{CurDir()}%)\ 
-set statusline+=%=%-10.(%l,%c%V%)\ %p%%/%L
-
-function! CurDir()
-    let curdir = substitute(getcwd(), $HOME, "~", "")
-    return curdir
-endfunction
-
-function! HasPaste()
-    if &paste
-        return '[PASTE]'
-    else
-        return ''
-    endif
-endfunction
-
-"}
-
-
-" C/C++ specific settings
-autocmd FileType c,cpp,cc  set cindent comments=sr:/*,mb:*,el:*/,:// cino=>s,e0,n0,f0,{0,}0,^-1s,:0,=s,g0,h1s,p2,t0,+2,(2,)20,*30
-autocmd BufNewFile,BufRead *.c set formatprg=astyle\ --style=bsd "gggqG"
-
-"Restore cursor to file position in previous editing session
-set viminfo='10,\"100,:20,%,n~/.viminfo
-au BufReadPost * if line("'\"") > 0|if line("'\"") <= line("$")|exe("norm '\"")|else|exe "norm $"|endif|endif
-
-"--------------------------------------------------------------------------- 
-" Tip #382: Search for <cword> and replace with input() in all open buffers 
-"--------------------------------------------------------------------------- 
-fun! Replace() 
-    let s:word = input("Replace " . expand('<cword>') . " with:") 
-    :exe 'bufdo! %s/\<' . expand('<cword>') . '\>/' . s:word . '/ge' 
-    :unlet! s:word 
-endfun 
-
 
 "--------------------------------------------------------------------------- 
 " USEFUL SHORTCUTS
@@ -211,166 +140,4 @@ vnoremap > >gv
 " :cd. change working directory to that of the current file
 cmap cd. lcd %:p:h
 
-"--------------------------------------------------------------------------- 
-" PROGRAMMING SHORTCUTS
-"--------------------------------------------------------------------------- 
-
-" Ctrl-[ jump out of the tag stack (undo Ctrl-])
-" map <C-[> :po<CR>
-
-
-" ,g generates the header guard
-map <leader>g :call IncludeGuard()<CR>
-fun! IncludeGuard()
-   let basename = substitute(bufname(""), '.*/', '', '')
-   let guard = '_' . substitute(toupper(basename), '\.', '_', "H")
-   call append(0, "#ifndef " . guard)
-   call append(1, "#define " . guard)
-   call append( line("$"), "#endif // for #ifndef " . guard)
-endfun
-
-
-
-" Enable omni completion. (Ctrl-X Ctrl-O)
-autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
-autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
-autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
-autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
-autocmd FileType css set omnifunc=csscomplete#CompleteCSS
-autocmd FileType c set omnifunc=ccomplete#Complete
-autocmd FileType java set omnifunc=javacomplete#Complete
-
-" use syntax complete if nothing else available
-if has("autocmd") && exists("+omnifunc")
-  autocmd Filetype *
-              \	if &omnifunc == "" |
-              \		setlocal omnifunc=syntaxcomplete#Complete |
-              \	endif
-endif
-
-set cot-=preview "disable doc preview in omnicomplete
-
-" make CSS omnicompletion work for SASS and SCSS
-autocmd BufNewFile,BufRead *.scss             set ft=scss.css
-autocmd BufNewFile,BufRead *.sass             set ft=sass.css
-
-"--------------------------------------------------------------------------- 
-" ENCODING SETTINGS
-"--------------------------------------------------------------------------- 
-set encoding=utf-8                                  
-set termencoding=utf-8
-set fileencoding=utf-8
-set fileencodings=ucs-bom,utf-8,big5,gb2312,latin1
-
-fun! ViewUTF8()
-	set encoding=utf-8                                  
-	set termencoding=big5
-endfun
-
-fun! UTF8()
-	set encoding=utf-8                                  
-	set termencoding=big5
-	set fileencoding=utf-8
-	set fileencodings=ucs-bom,big5,utf-8,latin1
-endfun
-
-fun! Big5()
-	set encoding=big5
-	set fileencoding=big5
-endfun
-
-
-"--------------------------------------------------------------------------- 
-" PLUGIN SETTINGS
-"--------------------------------------------------------------------------- 
-
-
-" ------- vim-latex - many latex shortcuts and snippets {
-
-" IMPORTANT: win32 users will need to have 'shellslash' set so that latex
-" can be called correctly.
-set shellslash
-set grepprg=grep\ -nH\ $*
-" OPTIONAL: Starting with Vim 7, the filetype of empty .tex files defaults to
-" 'plaintex' instead of 'tex', which results in vim-latex not being loaded.
-" The following changes the default filetype back to 'tex':
-let g:tex_flavor='latex'
-
-"}
-
-
-" --- AutoClose - Inserts matching bracket, paren, brace or quote 
-" fixed the arrow key problems caused by AutoClose
-if !has("gui_running")	
-   "set term=linux
-   imap OA <ESC>ki
-   imap OB <ESC>ji
-   imap OC <ESC>li
-   imap OD <ESC>hi
-
-   nmap OA k
-   nmap OB j
-   nmap OC l
-   nmap OD h
-endif
-
-" --- EasyMotion
-let g:EasyMotion_leader_key = '<Leader>m' " default is <Leader>w
-hi link EasyMotionTarget ErrorMsg
-hi link EasyMotionShade  Comment
-
-" --- NERDTree
-let g:NERDTreeWinPos = "right"
-
-" --- NEDRTree Tabs"
-nnoremap <silent> <F8> :NERDTreeTabsToggle<CR> 
-
-" --- TagBar
-" toggle TagBar with F7
-nnoremap <silent> <F7> :TagbarToggle<CR> 
-
-" --- vim-easy-align"
-vnoremap <silent> <Enter> :EasyAlign<CR>
-
-" set focus to TagBar when opening it
-let g:tagbar_autofocus = 1
-let g:tagbar_left = 0
-
-" --- For ag.vim
-let g:agprg="/usr/bin/ag --column"
-
-" --- For indent guides"
-let g:indent_guides_guide_size=1
-
-set t_Co=256          " 256 color mode
-
-" -- SuperTab
-let g:SuperTabDefaultCompletionType = "<c-n>"
-
-" air-line"
-let g:airline_powerline_fonts = 1
-let g:airline#extensions#tabline#enabled = 1
-let g:airline#extensions#tabline#left_sep = ' '
-let g:airline#extensions#tabline#left_alt_sep = '|'
-
-" -- jedi-vim
-let g:jedi#goto_assignments_command = "<leader>g"
-let g:jedi#goto_definitions_command = "<leader>d"
-let g:jedi#completions_command = "<C-Space>"
-let g:jedi#rename_command = "<leader>r"
-let g:jedi#show_call_signatures = "1"
-
-let g:syntastic_python_checkers=["flake8"]
-let g:syntastic_python_flake8_args="--ignore=E501,E265,W601"
-
-" -- pymode
-let g:pymode_lint_ignore = "E501"
-
-" vim-markdown
-let g:tagbar_type_mkd = {
-    \ 'ctagstype' : 'markdown',
-    \ 'kinds' : [
-        \ 'h:Headline'
-    \ ],
-    \ 'sort' : 0,
-\ }
+autocmd! bufwritepost init.vim source %

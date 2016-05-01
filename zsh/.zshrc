@@ -40,7 +40,14 @@ alias vim=nvim
 # Linux config 
 #
 #################################################
+export ANDROID_SDK_HOME="/home/swind/Software/android-sdk-linux"
 export TERM=xterm-256color
+export PATH="$PATH:$ANDROID_SDK_HOME/tools:$ANDROID_SDK_HOME/platform-tools:$ANDROID_SDK_HOME/build-tools/23.0.3"
+
+export ANDROID_HOME="/home/swind/Software/android-sdk-linux"
+export JAVA_HOME="/usr/lib/jvm/java-8-jdk"
+
+export GOPATH=$HOME/Program/Go
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 eval $(thefuck --alias)
