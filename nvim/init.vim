@@ -13,7 +13,7 @@ Plug 'bling/vim-airline'
 Plug 'fatih/vim-go'
 
 "Syntax checking hacks for vim
-source ~/.config/nvim/configs/syntastic.vim
+"source ~/.config/nvim/configs/syntastic.vim
 
 "Autocomplete
 source ~/.config/nvim/configs/autocomplete.vim
@@ -23,6 +23,12 @@ source ~/.config/nvim/configs/fzf.vim
 
 "JavaScript
 source ~/.config/nvim/configs/javascript.vim
+
+"File managers
+source ~/.config/nvim/configs/filemanagers.vim
+
+"RTags
+source ~/.config/nvim/configs/rtags.vim
 
 call plug#end()
 
