@@ -8,6 +8,7 @@ call plug#begin()
 "UI"
 Plug 'molokai'
 Plug 'bling/vim-airline'
+Plug 'cespare/vim-toml'
 
 "Golang
 Plug 'fatih/vim-go'
@@ -29,6 +30,18 @@ source ~/.config/nvim/configs/filemanagers.vim
 
 "RTags
 source ~/.config/nvim/configs/rtags.vim
+
+"Python
+source ~/.config/nvim/configs/python.vim
+
+"Align
+source ~/.config/nvim/configs/align.vim
+
+"Ansible
+source ~/.config/nvim/configs/ansible.vim
+
+"Wiki
+source ~/.config/nvim/configs/wiki.vim
 
 call plug#end()
 
@@ -82,7 +95,7 @@ set tm=500
    set expandtab        "replace <TAB> with spaces
    set softtabstop=2
    set shiftwidth=2
-
+   set tabstop=2
 "   au FileType Makefile set noexpandtab
 "}      							
 
@@ -138,6 +151,8 @@ cnoremap <C-K>      <C-U>
 
 " ,p toggles paste mode
 nmap <leader>p :set paste!<BAR>set paste?<CR>
+
+map <F10> mzgg=G`z
 
 " allow multiple indentation/deindentation in visual mode
 vnoremap < <gv
