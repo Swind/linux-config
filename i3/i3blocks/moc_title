@@ -1,0 +1,100 @@
+#!/usr/bin/perl
+
+use strict;
+use warnings;
+
+### ..... ###
+### CLASS ### -----------------------------------------------------------------
+### ''''' ###
+
+package moc_titler;
+
+    my $STATE_UNKNOWN   = 0;
+    my $STATE_NODEMON   = 1;
+    my $STATE_RUNNING   = 2;
+
+    sub new {
+        my $class = shift;
+        my $self = {};
+        $self->{title} = "(unknown)";
+        $self->{data} = {
+            _state  => $STATE_UNKNOWN,
+            state   => "",
+            artist  => "",
+            album   => "",
+            song    => "",
+            ct      => "",      # current time
+            tt      => ""       # total time
+        };
+        return bless $self, $class;
+    }
+
+    sub read_state {
+        my $self = shift;
+        $self->{data}->{_state} = (
+            `ps -eo comm | grep mocp`
+            ? $STATE_RUNNING
+            : $STATE_NODEMON
+        );
+    }
+
+    sub read_data {
+        my $self = shift;
+
+        # query data from mocp daemon
+        my @fields = grep /^[^_]/, keys %{ $self->{data} };
+
+        for my $field (@fields) {
+            my $value = `mocp -Q %$field`;
+            chomp $value;
+            $self->{data}->{$field} = $value;
+        }
+
+    }
+
+    sub assemble_title {
+        my $self = shift;
+
+        $self->read_state;
+
+        my $title = "";
+
+        if ($self->{data}->{_state} == $STATE_RUNNING) {
+
+            $self->read_data;
+
+            my $d = $self->{data};
+
+            # assemble the data to human-readable format
+            $title .= "($d->{state}) ";
+            $title .= "$d->{artist}"            if $d->{artist};
+            $title .= " "                       if ($d->{artist} and $d->{album});
+            $title .= "[$d->{album}]"           if $d->{album};
+            $title .= ": "                      if (($d->{artist} or $d->{album})
+                                                    and ($d->{song} or $d->{tt}));
+            $title .= "$d->{song}"              if $d->{song};
+            $title .= " ($d->{ct}/$d->{tt})"    if $d->{tt};
+            $title .= "\n";
+
+        } elsif ($self->{data}->{_state} == $STATE_NODEMON) {
+            $title = "(not running)"
+        }
+
+        $self->{title} = $title;
+
+    }
+
+    sub get_title {
+        my $self = shift;
+        $self->assemble_title;
+        return $self->{title};
+    }
+
+### .... ###
+### MAIN ### ------------------------------------------------------------------
+### '''' ###
+
+package main;
+
+my $t = moc_titler->new;
+print $t->get_title;

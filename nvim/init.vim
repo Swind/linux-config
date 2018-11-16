@@ -6,12 +6,16 @@ call plug#begin()
 " }
 
 "UI"
-Plug 'molokai'
+Plug 'tomasr/molokai'
 Plug 'bling/vim-airline'
 Plug 'cespare/vim-toml'
+Plug 'airblade/vim-gitgutter'
 
 "Golang
-Plug 'fatih/vim-go'
+"Plug 'fatih/vim-go'
+
+" C++
+source ~/.config/nvim/configs/cpp.vim
 
 "Syntax checking hacks for vim
 "source ~/.config/nvim/configs/syntastic.vim
@@ -19,8 +23,13 @@ Plug 'fatih/vim-go'
 "Autocomplete
 source ~/.config/nvim/configs/autocomplete.vim
 
+"Format
+source ~/.config/nvim/configs/format.vim
+
 " File manager and search
 source ~/.config/nvim/configs/fzf.vim
+source ~/.config/nvim/configs/sneak.vim
+source ~/.config/nvim/configs/incsearch.vim
 
 "JavaScript
 source ~/.config/nvim/configs/javascript.vim
@@ -32,13 +41,13 @@ source ~/.config/nvim/configs/filemanagers.vim
 source ~/.config/nvim/configs/rtags.vim
 
 "Python
-source ~/.config/nvim/configs/python.vim
+"source ~/.config/nvim/configs/python.vim
 
 "Align
 source ~/.config/nvim/configs/align.vim
 
 "Ansible
-source ~/.config/nvim/configs/ansible.vim
+"source ~/.config/nvim/configs/ansible.vim
 
 "Wiki
 source ~/.config/nvim/configs/wiki.vim
@@ -66,6 +75,8 @@ set guifont="Monaco for Powerline":h20
 set background=dark 
 set t_Co=256
 set cursorline        " highlight current line
+set cursorcolumn
+
 colors molokai
 
 set clipboard=unnamed	" yank to the system register (*) by default
@@ -98,6 +109,7 @@ set tm=500
    set tabstop=2
 "   au FileType Makefile set noexpandtab
 "}      							
+"
 
 "--------------------------------------------------------------------------- 
 " USEFUL SHORTCUTS
@@ -105,9 +117,6 @@ set tm=500
 " set leader to ,
 let mapleader=","
 let g:mapleader=","
-
-"replace the current word in all opened buffers
-map <leader>r :call Replace()<CR>
 
 " open the error console
 map <leader>cc :botright cope<CR> 

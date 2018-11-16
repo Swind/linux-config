@@ -11,6 +11,7 @@ set hidden
 let g:LanguageClient_serverCommands = {
     \ 'cpp': ['clangd-6.0'],
     \ 'c': ['clangd-6.0'],
+    \ 'python': ['/home/swind/.myconfig/pyenv/shims/pyls'],
     \ }
 
 "let g:LanguageClient_loadSettings = 1 " Use an absolute configuration path if you want system-wide settings
