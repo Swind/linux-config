@@ -9,7 +9,11 @@ call plug#begin()
 Plug 'tomasr/molokai'
 Plug 'bling/vim-airline'
 Plug 'cespare/vim-toml'
+Plug 'tpope/vim-commentary'
+
+" Git
 Plug 'airblade/vim-gitgutter'
+Plug 'tpope/vim-fugitive'
 
 "Golang
 "Plug 'fatih/vim-go'
@@ -21,6 +25,8 @@ source ~/.config/nvim/configs/cpp.vim
 "source ~/.config/nvim/configs/syntastic.vim
 
 "Autocomplete
+let g:python_host_prog = "/home/swind/.myconfig/pyenv/shims/python"
+let g:python3_host_prog = "/home/swind/.myconfig/pyenv/shims/python3"
 source ~/.config/nvim/configs/autocomplete.vim
 
 "Format

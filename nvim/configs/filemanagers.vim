@@ -1,6 +1,10 @@
 " NERDTree
 Plug 'scrooloose/nerdtree'
-nnoremap <silent><C-e> :NERDTreeToggle<CR>
+Plug 'jistr/vim-nerdtree-tabs'
+Plug 'Xuyuanp/nerdtree-git-plugin'
+" nnoremap <silent><C-e> :NERDTreeToggle<CR>
+nnoremap <silent><C-e> :NERDTreeTabsToggle<CR>
+
 
 let g:NERDTreeDirArrowExpandable = '▸'
 let g:NERDTreeDirArrowCollapsible = '▾'
