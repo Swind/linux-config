@@ -1,35 +1,32 @@
-" Automatic installation of vim-plug
-source ~/.config/nvim/configs/auto_install_plug.vim
+if empty(glob('~/.myconfig/nvim//autoload/plug.vim'))
+  silent !curl -fLo ~/.myconfig/nvim//autoload/plug.vim --create-dirs
+    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  autocmd VimEnter * PlugInstall | source $MYVIMRC
+endif
 
 " Plug {
 call plug#begin()
 " }
 
-"UI"
+"====== UI ====="
 Plug 'tomasr/molokai'
 Plug 'bling/vim-airline'
-Plug 'cespare/vim-toml'
-Plug 'airblade/vim-gitgutter'
+source ~/.config/nvim/configs/incsearch.vim "highlights all pattern matches
 
-"Golang
-"Plug 'fatih/vim-go'
+"====== Syntax ======"
+Plug 'cespare/vim-toml' " Vim syntax for TOML
 
-" C++
-source ~/.config/nvim/configs/cpp.vim
+"====== Git ======"
+Plug 'airblade/vim-gitgutter' "Shows a git diff in the 'gutter'
 
-"Syntax checking hacks for vim
-"source ~/.config/nvim/configs/syntastic.vim
+"====== Golang ======"
+Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+let g:go_fmt_command = "goimports"
+let g:go_def_mapping_enabled = 0
+let g:go_doc_keywordprg_enabled = 0
 
-"Autocomplete
+"====== Auto Complete ======"
 source ~/.config/nvim/configs/autocomplete.vim
-
-"Format
-source ~/.config/nvim/configs/format.vim
-
-" File manager and search
-source ~/.config/nvim/configs/fzf.vim
-source ~/.config/nvim/configs/sneak.vim
-source ~/.config/nvim/configs/incsearch.vim
 
 "JavaScript
 source ~/.config/nvim/configs/javascript.vim
@@ -40,17 +37,8 @@ source ~/.config/nvim/configs/filemanagers.vim
 "RTags
 source ~/.config/nvim/configs/rtags.vim
 
-"Python
-"source ~/.config/nvim/configs/python.vim
-
 "Align
 source ~/.config/nvim/configs/align.vim
-
-"Ansible
-"source ~/.config/nvim/configs/ansible.vim
-
-"Wiki
-source ~/.config/nvim/configs/wiki.vim
 
 call plug#end()
 
@@ -158,9 +146,6 @@ cnoremap <C-A>      <Home>
 cnoremap <C-E>      <End>
 cnoremap <C-K>      <C-U>
 
-" ,p toggles paste mode
-nmap <leader>p :set paste!<BAR>set paste?<CR>
-
 map <F10> mzgg=G`z
 
 " allow multiple indentation/deindentation in visual mode
@@ -171,3 +156,5 @@ vnoremap > >gv
 cmap cd. lcd %:p:h
 
 autocmd! bufwritepost init.vim source %
+autocmd FileType c,cpp,java,php,py autocmd BufWritePre <buffer> %s/\s\+$//e
+
