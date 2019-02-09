@@ -1,3 +1,5 @@
+Plug 'w0rp/ale'
+
 " assuming you're using vim-plug: https://github.com/junegunn/vim-plug
 Plug 'ncm2/ncm2'
 Plug 'roxma/nvim-yarp'
