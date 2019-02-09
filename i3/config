@@ -31,7 +31,7 @@ floating_modifier $mod
 
 # start a terminal
 #bindsym $mod+Return exec i3-sensible-terminal
-bindsym $mod+Return exec terminology 
+bindsym $mod+Return exec alacritty 
 
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -46,11 +46,12 @@ bindsym $mod+d exec dmenu_run
 # installed.
 # bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
 #exec --no-startup-id xrandr --output HDMI-1 --primary
-exec --no-startup-id xrandr --output DVI-I-2-1 --primary
+#exec --no-startup-id xrandr --output DVI-I-2-1 --primary
 exec --no-startup-id fcitx 
 exec --no-startup-id cmst
 exec --no-startup-id $HOME/.screenlayout/default.sh
 exec_always --no-startup-id $HOME/.config/polybar/launch.sh
+exec_always feh --bg-scale $HOME/.config/wallpaper.jpg
 
 # change focus
 bindsym $mod+j focus left
