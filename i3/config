@@ -31,7 +31,10 @@ floating_modifier $mod
 
 # start a terminal
 #bindsym $mod+Return exec i3-sensible-terminal
-bindsym $mod+Return exec alacritty 
+bindsym $mod+Return exec terminology
+
+# list open windows to switch to
+bindsym $alt+Tab exec rofi -show window
 
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -40,7 +43,8 @@ bindsym $mod+Shift+q kill
 bindsym $mod+F1 exec shutter -s
 
 # start dmenu (a program launcher)
-bindsym $mod+d exec dmenu_run
+bindsym $mod+d exec rofi -show drun -eh 2 -padding 16 
+
 # There also is the (new) i3-dmenu-desktop which only displays applications
 # shipping a .desktop file. It is a wrapper around dmenu, so you need that
 # installed.
@@ -49,6 +53,8 @@ bindsym $mod+d exec dmenu_run
 #exec --no-startup-id xrandr --output DVI-I-2-1 --primary
 exec --no-startup-id fcitx 
 exec --no-startup-id cmst
+exec --no-startup-id /usr/bin/nm-applet
+
 exec --no-startup-id $HOME/.screenlayout/default.sh
 exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 exec_always feh --bg-scale $HOME/.config/wallpaper.jpg

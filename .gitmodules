@@ -4,3 +4,6 @@
 [submodule "pyenv"]
 	path = pyenv
 	url = https://github.com/yyuu/pyenv.git
+[submodule "zsh/zplug"]
+	path = zsh/zplug
+	url = https://github.com/zplug/zplug.git

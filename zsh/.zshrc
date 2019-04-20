@@ -3,9 +3,11 @@
 #   ZSH Config
 #
 ################################################
+export LANG="en_US.UTF-8"
+export LC_ALL="en_US.UTF-8"
 
 MY_CONFIG_HOME=~/.myconfig
-source $MY_CONFIG_HOME/zsh/.zshrc.antigen
+source $MY_CONFIG_HOME/zsh/.zshrc.zplug
 
 # Customize to your needs...
 export PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin:/root/bin
