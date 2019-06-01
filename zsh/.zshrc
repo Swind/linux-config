@@ -33,7 +33,7 @@ fi
 #   General Setting
 #
 ##################################################
-alias l="ls -lah"
+alias l="ls -lah --color=auto"
 alias vim=nvim
 
 ##################################################

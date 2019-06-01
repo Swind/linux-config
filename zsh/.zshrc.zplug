@@ -9,6 +9,7 @@ zplug "Jxck/dotfiles", as:command, use:"bin/{histuniq,color}"
 
 # Supports oh-my-zsh plugins and the like
 zplug "plugins/git",   from:oh-my-zsh
+zplug "plugins/z",   from:oh-my-zsh
 
 # Set the priority when loading
 # e.g., zsh-syntax-highlighting must be loaded
