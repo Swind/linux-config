@@ -55,15 +55,15 @@ fi
 #################################################
 export TERM=xterm-256color
 
-#export ANDROID_SDK_HOME="/home/swind/Software/android-sdk-linux"
-#export ANDROID_HOME="/home/swind/Software/android-sdk-linux"
-#export PATH="$PATH:$ANDROID_SDK_HOME/tools/bin:$ANDROID_SDK_HOME/platform-tools:$ANDROID_SDK_HOME/build-tools/28.0.3:$ANDROID_SDK_HOME/ndk-bundle"
+export ANDROID_SDK_HOME="/home/swind/Software/android-sdk-linux"
+export ANDROID_HOME="/home/swind/Software/android-sdk-linux"
+export PATH="$PATH:$ANDROID_SDK_HOME/tools/bin:$ANDROID_SDK_HOME/platform-tools:$ANDROID_SDK_HOME/build-tools/27.0.3:$ANDROID_SDK_HOME/ndk-bundle"
 export PATH="$PATH:/opt/gradle/gradle-4.10.3/bin"
 
 export JAVA_HOME="/usr/lib/jvm/default-java"
 
 export GOPATH=$HOME/Program/Go
-export PATH="$PATH:/home/swind/.local/bin:/home/swind/Software/depot_tools:/usr/lib/go-1.10/bin:/home/swind/Program/Go/bin"
+export PATH="$PATH:/home/swind/.local/bin:/home/swind/bin:/home/swind/Software/depot_tools:/home/swind/Software/go/bin:/home/swind/Program/Go/bin"
 
 # The fuck
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
