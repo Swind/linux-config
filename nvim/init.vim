@@ -19,13 +19,7 @@ Plug 'cespare/vim-toml' " Vim syntax for TOML
 "====== Git ======"
 Plug 'airblade/vim-gitgutter' "Shows a git diff in the 'gutter'
 
-"====== Golang ======"
-Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
-let g:go_fmt_command = "goimports"
-let g:go_def_mapping_enabled = 0
-let g:go_doc_keywordprg_enabled = 0
-
-"====== Auto Complete ======"
+"Coc - Intellisense engine for neovim
 source ~/.config/nvim/configs/autocomplete.vim
 
 "JavaScript
