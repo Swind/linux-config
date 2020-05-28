@@ -18,6 +18,7 @@ Plug 'cespare/vim-toml' " Vim syntax for TOML
 
 "====== Git ======"
 Plug 'airblade/vim-gitgutter' "Shows a git diff in the 'gutter'
+Plug 'tpope/vim-fugitive'
 
 "Coc - Intellisense engine for neovim
 source ~/.config/nvim/configs/autocomplete.vim
@@ -33,6 +34,12 @@ source ~/.config/nvim/configs/rtags.vim
 
 "Align
 source ~/.config/nvim/configs/align.vim
+
+"Format
+source ~/.config/nvim/configs/format.vim
+
+"Snippets
+source ~/.config/nvim/configs/snippets.vim
 
 call plug#end()
 
@@ -123,7 +130,7 @@ set wmh=0                     " set the min height of a window to 0 so we can ma
 
 " move around tabs. conflict with the original screen top/bottom
 " comment them out if you want the original H/L
-" go to prev tab 
+" go to prev tab
 map <S-H> gT
 " go to next tab
 map <S-L> gt
@@ -131,7 +138,7 @@ map <S-L> gt
 " new tab
 map <C-t><C-t> :tabnew<CR>
 " close tab
-map <C-t><C-w> :tabclose<CR> 
+map <C-t><C-w> :tabclose<CR>
 
 " ,/ turn off search highlighting
 nmap <leader>/ :nohl<CR>
@@ -151,5 +158,14 @@ vnoremap > >gv
 cmap cd. lcd %:p:h
 
 autocmd! bufwritepost init.vim source %
-autocmd FileType c,cpp,java,php,py autocmd BufWritePre <buffer> %s/\s\+$//e
 
+autocmd FileType c,cpp,java,php,py autocmd BufWritePre <buffer> %s/\s\+$//e
+map <F4> :e %:p:s,.h$,.X123X,:s,.cpp$,.h,:s,.X123X$,.cpp,<CR>
+
+"Highlight unwanted spaces
+highlight ExtraWhitespace ctermbg=red guibg=red
+match ExtraWhitespace /\s\+$/
+autocmd BufWinEnter * match ExtraWhitespace /\s\+$/
+autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
+autocmd InsertLeave * match ExtraWhitespace /\s\+$/
+autocmd BufWinLeave * call clearmatches()

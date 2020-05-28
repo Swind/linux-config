@@ -51,13 +51,13 @@ bindsym $mod+d exec rofi -show drun -eh 2 -padding 16
 # bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
 #exec --no-startup-id xrandr --output HDMI-1 --primary
 #exec --no-startup-id xrandr --output DVI-I-2-1 --primary
-exec --no-startup-id fcitx 
-exec --no-startup-id cmst
-exec --no-startup-id /usr/bin/nm-applet
+#exec --no-startup-id fcitx 
+#exec --no-startup-id cmst
+#exec --no-startup-id /usr/bin/nm-applet
 
 exec --no-startup-id $HOME/.screenlayout/default.sh
 exec_always --no-startup-id $HOME/.config/polybar/launch.sh
-exec_always feh --bg-scale $HOME/.config/wallpaper.jpg
+#exec_always feh --bg-scale $HOME/.config/wallpaper.jpg
 
 # change focus
 bindsym $mod+j focus left

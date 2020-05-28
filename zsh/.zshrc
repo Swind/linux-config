@@ -1,3 +1,10 @@
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
 ################################################
 #
 #   ZSH Config
@@ -89,3 +96,22 @@ export PATH="$PATH:/home/swind/Software/node/bin:/home/swind/.yarn/bin"
 
 # Autojump
 [[ -s /home/swind/.autojump/etc/profile.d/autojump.sh ]] && source /home/swind/.autojump/etc/profile.d/autojump.sh
+
+# History
+HISTFILE=~/.zsh_history
+HISTSIZE=10000
+SAVEHIST=1000
+setopt INC_APPEND_HISTORY_TIME 
+
+DISABLE_UNTRACKED_FILES_DIRTY="true"
+
+# Rust
+source $HOME/.cargo/env
+
+# sccache
+export SCCACHE_CACHE_SIZE="32G"
+
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+alias fall="find . -name '*.cpp' -o -name '*.h' | sed 's| |\\ |g' | xargs clang-format -i"
