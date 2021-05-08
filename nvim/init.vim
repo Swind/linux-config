@@ -20,8 +20,9 @@ Plug 'cespare/vim-toml' " Vim syntax for TOML
 Plug 'airblade/vim-gitgutter' "Shows a git diff in the 'gutter'
 Plug 'tpope/vim-fugitive'
 
-"Coc - Intellisense engine for neovim
-source ~/.config/nvim/configs/autocomplete.vim
+"====== Build-in language server ======="
+Plug 'neovim/nvim-lspconfig'
+Plug 'nvim-lua/completion-nvim'
 
 "JavaScript
 source ~/.config/nvim/configs/javascript.vim
@@ -43,8 +44,10 @@ source ~/.config/nvim/configs/snippets.vim
 
 call plug#end()
 
-" General Setting
+" Plugin Setting
+source ~/.config/nvim/configs/autocomplete.vim
 
+" General Setting
 set nocompatible	" not compatible with the old-fashion vi mode
 set bs=2		" allow backspacing over everything in insert mode
 set history=50		" keep 50 lines of command line history
@@ -98,7 +101,7 @@ set tm=500
    set shiftwidth=2
    set tabstop=2
 "   au FileType Makefile set noexpandtab
-"}      							
+"}
 "
 
 "--------------------------------------------------------------------------- 
@@ -109,20 +112,20 @@ let mapleader=","
 let g:mapleader=","
 
 " open the error console
-map <leader>cc :botright cope<CR> 
+map <leader>cc :botright cope<CR>
 " move to next error
 map <leader>] :cn<CR>
 " move to the prev error
 map <leader>[ :cp<CR>
 
 " --- move around splits {
-" move to and maximize the below split 
+" move to and maximize the below split
 map <C-J> <C-W>j<C-W>_
-" move to and maximize the above split 
+" move to and maximize the above split
 map <C-K> <C-W>k<C-W>_
-" move to and maximize the left split 
+" move to and maximize the left split
 nmap <c-h> <c-w>h<c-w><bar>
-" move to and maximize the right split  
+" move to and maximize the right split
 nmap <c-l> <c-w>l<c-w><bar>
 set wmw=0                     " set the min width of a window to 0 so we can maximize others 
 set wmh=0                     " set the min height of a window to 0 so we can maximize others
