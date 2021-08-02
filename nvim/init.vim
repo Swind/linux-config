@@ -4,12 +4,16 @@ if empty(glob('~/.myconfig/nvim//autoload/plug.vim'))
   autocmd VimEnter * PlugInstall | source $MYVIMRC
 endif
 
+" set leader to ,
+let mapleader=","
+let g:mapleader=","
+
 " Plug {
 call plug#begin()
 " }
 
 "====== UI ====="
-Plug 'tomasr/molokai'
+Plug 'marko-cerovac/material.nvim'
 Plug 'bling/vim-airline'
 source ~/.config/nvim/configs/incsearch.vim "highlights all pattern matches
 
@@ -20,15 +24,17 @@ Plug 'cespare/vim-toml' " Vim syntax for TOML
 Plug 'airblade/vim-gitgutter' "Shows a git diff in the 'gutter'
 Plug 'tpope/vim-fugitive'
 
+"====== File managers ======"
+source ~/.config/nvim/configs/filemanagers.vim
+
 "====== Build-in language server ======="
 Plug 'neovim/nvim-lspconfig'
 Plug 'nvim-lua/completion-nvim'
+Plug 'ojroques/nvim-lspfuzzy'
+Plug 'glepnir/lspsaga.nvim'
 
 "JavaScript
 source ~/.config/nvim/configs/javascript.vim
-
-"File managers
-source ~/.config/nvim/configs/filemanagers.vim
 
 "RTags
 source ~/.config/nvim/configs/rtags.vim
@@ -64,13 +70,14 @@ syntax on		" syntax highlight
 set hlsearch		" search highlighting
 
 " terminal color settings
-set guifont="Monaco for Powerline":h20
-set background=dark 
-set t_Co=256
-set cursorline        " highlight current line
-set cursorcolumn
+"set guifont="Monaco for Powerline":h20
+"set background=dark
+"set t_Co=256
+"set cursorline        " highlight current line
+"set cursorcolumn
 
-colors molokai
+" Use color theme
+colorscheme material
 
 set clipboard=unnamed	" yank to the system register (*) by default
 set showmatch		" Cursor shows matching ) and }
@@ -107,16 +114,6 @@ set tm=500
 "--------------------------------------------------------------------------- 
 " USEFUL SHORTCUTS
 "--------------------------------------------------------------------------- 
-" set leader to ,
-let mapleader=","
-let g:mapleader=","
-
-" open the error console
-map <leader>cc :botright cope<CR>
-" move to next error
-map <leader>] :cn<CR>
-" move to the prev error
-map <leader>[ :cp<CR>
 
 " --- move around splits {
 " move to and maximize the below split
@@ -163,7 +160,7 @@ cmap cd. lcd %:p:h
 autocmd! bufwritepost init.vim source %
 
 autocmd FileType c,cpp,java,php,py autocmd BufWritePre <buffer> %s/\s\+$//e
-map <F4> :e %:p:s,.h$,.X123X,:s,.cpp$,.h,:s,.X123X$,.cpp,<CR>
+map <F4> :e %:p:s,.h$,.X123X,:s,.cc$,.h,:s,.X123X$,.cc,<CR>
 
 "Highlight unwanted spaces
 highlight ExtraWhitespace ctermbg=red guibg=red

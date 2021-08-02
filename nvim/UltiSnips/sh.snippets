@@ -1,0 +1,128 @@
+# A valid snippet should starts with:
+#
+#		snippet trigger_word [ "description" [ options ] ]
+#
+# and end with:
+#
+#		endsnippet
+#
+# Snippet options:
+#
+#		b - Beginning of line.
+#		i - In-word expansion.
+#		w - Word boundary.
+#		r - Regular expression
+#		e - Custom context snippet
+#		A - Snippet will be triggered automatically, when condition matches.
+#
+# Basic example:
+#
+#		snippet emitter "emitter properties" b
+#		private readonly ${1} = new Emitter<$2>()
+#		public readonly ${1/^_(.*)/$1/}: Event<$2> = this.$1.event
+#		endsnippet
+#
+# Online reference: https://github.com/SirVer/ultisnips/blob/master/doc/UltiSnips.txt
+
+snippet color "ANSI Color" b
+RED='\033[0;31m'
+GREEN='\033[0;32m'
+NC='\033[0m' # No Color
+endsnippet
+
+snippet cpoint "check point" b
+USE_CHECK_POINT=true
+check_point(){
+	if [ "$USE_CHECK_POINT" = true ]; then
+		local message=\$1
+		read -p "$message - Are you sure(y/n)? " -n 1 -r
+		echo    # (optional) move to a new line
+		if [[ ! $REPLY =~ ^[Yy]$ ]]
+		then
+			exit 1
+		fi
+	else
+		echo $message
+	fi
+}
+endsnippet
+
+snippet cresult "check previous command result" b
+check_result(){
+	if [ $? -eq 0 ]
+	then
+		echo -e "${GREEN}${1} => Success ...${NC}"
+	else
+		echo -e "${RED}${1} => Failed ...${NC}" >&2
+	fi
+}
+endsnippet
+
+snippet currdir "Current dir" b
+CURRENT_DIR="$( cd "$(dirname "$0")" ; pwd -P )"
+endsnippet
+
+snippet cempty "Check empty" b
+if [ -z "$var" ]
+then
+	echo "\$var is empty"
+else
+	echo "\$var is NOT empty"
+fi
+endsnippet
+
+snippet getopt "Get options" b
+ITEMS=(FirstItem SecondItem)
+
+function usage()
+{
+	cat << EOF
+	usage: \$0 [-i <Item>]
+
+	OPTIONS:
+	-i           Select item (${ITEMS[@]})
+	-h           Show this message.
+EOF
+}
+
+function check_options() {
+	local value=\$1
+	shift
+	local options=("$@")
+	for v in ${options[@]}
+	do
+		if [ "$v" = "\$1" ]
+		then
+			return 0
+		fi
+	done
+
+	echo "*** [Warning] Not a valid target: $value"
+	echo "*** Must be one of {${options[@]}}"
+	usage
+	exit 1
+}
+
+while getopts 'hi:' OPTION
+do
+	case $OPTION in
+		j)
+			selectedItem=$OPTARG
+			echo "Selected Item is ${selectedItem}"
+			;;
+		h)
+			usage
+			exit 1
+			;;
+	esac
+done
+endsnippet
+
+snippet ccommand "Check command is existing or not" b
+function check_command(){
+	if ! [ -x "$(command -v \$1)" ]; then
+		echo 'Error: \$1 is not installed.' >&2
+		exit 1
+	fi
+}
+endsnippet

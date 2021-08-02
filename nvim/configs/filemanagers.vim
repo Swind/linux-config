@@ -1,5 +1,7 @@
 " FZF
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
+
 " Use fzf to find the file by name
 nmap <C-p> :FZF<CR>
 let $FZF_DEFAULT_COMMAND = 'ag -g ""'
