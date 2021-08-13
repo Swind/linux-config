@@ -1,0 +1,4 @@
+[custom0]
+binding='<Alt>d'
+command='rofi -show run'
+name='Run Rofi'
