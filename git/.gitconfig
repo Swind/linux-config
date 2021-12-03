@@ -15,7 +15,7 @@
   pr-clean = "!git for-each-ref refs/heads/pr/* --format='%(refname)' | while read ref ; do branch=${ref#refs/heads/} ; git branch -D $branch ; done"
 
 [core]
-  editor = vim
+  editor = nvim
 	pager = less -F -X
 
 [color]

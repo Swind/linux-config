@@ -101,7 +101,7 @@ export PATH="$PATH:/home/swind/Software/node/bin:/home/swind/.yarn/bin"
 HISTFILE=~/.zsh_history
 HISTSIZE=10000
 SAVEHIST=1000
-setopt INC_APPEND_HISTORY_TIME 
+setopt INC_APPEND_HISTORY_TIME
 
 DISABLE_UNTRACKED_FILES_DIRTY="true"
 
