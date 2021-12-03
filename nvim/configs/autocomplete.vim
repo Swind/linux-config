@@ -1,8 +1,65 @@
 lua << EOF
+
+-- Setup nvim-cmp.
+local cmp = require'cmp'
+
+cmp.setup({
+  snippet = {
+    expand = function(args)
+      -- For `vsnip` user.
+      -- vim.fn["vsnip#anonymous"](args.body)
+
+      -- For `luasnip` user.
+      -- require('luasnip').lsp_expand(args.body)
+
+      -- For `ultisnips` user.
+      vim.fn["UltiSnips#Anon"](args.body)
+    end,
+  },
+  mapping = {
+    ['<C-d>'] = cmp.mapping.scroll_docs(-4),
+    ['<C-f>'] = cmp.mapping.scroll_docs(4),
+    ['<C-Space>'] = cmp.mapping.complete(),
+    ['<C-e>'] = cmp.mapping.close(),
+    ['<CR>'] = cmp.mapping.confirm({ select = true }),
+  },
+  sources = {
+    { name = 'nvim_lsp' },
+
+    -- For vsnip user.
+    -- { name = 'vsnip' },
+
+    -- For luasnip user.
+    -- { name = 'luasnip' },
+
+    -- For ultisnips user.
+    { name = 'ultisnips' },
+
+    { name = 'buffer' },
+  }
+})
+
+-- setup language server
+local nvim_lsp = require('lspconfig')
+
+-- Use an on_attach function to only map the following keys
+-- after the language server attaches to the current buffer
+local on_attach = function(client, bufnr)
+  local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
+  local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end
+
+    -- Enable completion triggered by <c-x><c-o>
+  buf_set_option('omnifunc', 'v:lua.vim.lsp.omnifunc')
+end
+
 require'lspconfig'.clangd.setup{
+  on_attach = on_attach,
   filetypes = { "c", "cpp", "objc", "objcpp", "cc" },
+  flags = {
+    debounce_text_changes = 150,
+  },
+  capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
 }
-require'lspconfig'.pyright.setup{}
 
 -- setup lsp plugin
 require('lspfuzzy').setup {}
@@ -10,29 +67,10 @@ require('lspfuzzy').setup {}
 local saga = require 'lspsaga'
 saga.init_lsp_saga()
 
-require'lspconfig'.tsserver.setup{on_attach=require'completion'.on_attach}
-
-
--- setup language server
-local nvim_lsp = require('lspconfig')
-
--- Use a loop to conveniently both setup defined servers 
--- and map buffer local keybindings when the language server attaches
-local servers = { "pyright", "rust_analyzer", "tsserver" }
-for _, lsp in ipairs(servers) do
-  nvim_lsp[lsp].setup { on_attach = on_attach }
-end
 EOF
 
-" Use completion-nvim in every buffer
-autocmd BufEnter * lua require'completion'.on_attach()
-
-" Use <Tab> and <S-Tab> to navigate through popup menu
-inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
-inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
-
 " Set completeopt to have a better completion experience
-set completeopt=menuone,noinsert,noselect
+set completeopt=menu,menuone,noselect
 
 " Avoid showing message extra message when using completion
 set shortmess+=c
@@ -43,10 +81,6 @@ let g:completion_enable_snippet = 'UltiSnips'
 "============== Setup Hotkey ================="
 " lsp provider to find the cursor word definition and reference
 nnoremap <silent> gh <cmd>lua require'lspsaga.provider'.lsp_finder()<CR>
-
-" code action
-nnoremap <silent><leader>ca <cmd>lua require('lspsaga.codeaction').code_action()<CR>
-vnoremap <silent><leader>ca :<C-U>lua require('lspsaga.codeaction').range_code_action()<CR>
 
 " rename
 nnoremap <silent> gr <cmd>lua require('lspsaga.rename').rename()<CR>

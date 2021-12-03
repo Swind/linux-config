@@ -29,9 +29,20 @@ source ~/.config/nvim/configs/filemanagers.vim
 
 "====== Build-in language server ======="
 Plug 'neovim/nvim-lspconfig'
-Plug 'nvim-lua/completion-nvim'
 Plug 'ojroques/nvim-lspfuzzy'
-Plug 'glepnir/lspsaga.nvim'
+
+"====== Github Copilot ======"
+"Plug 'github/copilot.vim'
+
+
+"Plug 'glepnir/lspsaga.nvim'
+Plug 'tami5/lspsaga.nvim'
+
+Plug 'hrsh7th/cmp-nvim-lsp'
+Plug 'hrsh7th/cmp-buffer'
+Plug 'hrsh7th/nvim-cmp'
+" nvim-cmp for ultisnips
+Plug 'quangnguyen30192/cmp-nvim-ultisnips'
 
 "JavaScript
 source ~/.config/nvim/configs/javascript.vim
@@ -44,6 +55,8 @@ source ~/.config/nvim/configs/align.vim
 
 "Format
 source ~/.config/nvim/configs/format.vim
+Plug 'tpope/vim-abolish'
+
 
 "Snippets
 source ~/.config/nvim/configs/snippets.vim
