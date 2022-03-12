@@ -125,8 +125,8 @@ nnoremap <silent><leader>cd :Lspsaga show_line_diagnostics<CR>
 nnoremap <silent><leader>cc <cmd>lua require'lspsaga.diagnostic'.show_cursor_diagnostics()<CR>
 
 " jump diagnostic
-nnoremap <silent> [e <cmd>lua require'lspsaga.diagnostic'.lsp_jump_diagnostic_prev()<CR>
-nnoremap <silent> ]e <cmd>lua require'lspsaga.diagnostic'.lsp_jump_diagnostic_next()<CR>
+nnoremap <silent> [e <cmd>Lspsaga diagnostic_jump_next<CR>
+nnoremap <silent> ]e <cmd>Lspsaga diagnostic_jump_prev<CR>
 
 " float terminal also you can pass the cli command in open_float_terminal function
 nnoremap <silent> <C-d> <cmd>lua require('lspsaga.floaterm').open_float_terminal()<CR>

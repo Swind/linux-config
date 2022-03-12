@@ -18,7 +18,10 @@ Plug 'bling/vim-airline'
 source ~/.config/nvim/configs/incsearch.vim "highlights all pattern matches
 
 "====== Syntax ======"
-Plug 'cespare/vim-toml' " Vim syntax for TOML
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+Plug 'willcassella/nvim-gn', {'do': ':TSUpdate'}
+Plug 'romgrk/nvim-treesitter-context'
+Plug 'p00f/nvim-ts-rainbow', {'do': ':TSUpdate'}
 
 "====== Git ======"
 Plug 'airblade/vim-gitgutter' "Shows a git diff in the 'gutter'
@@ -44,9 +47,6 @@ Plug 'hrsh7th/nvim-cmp'
 " nvim-cmp for ultisnips
 Plug 'quangnguyen30192/cmp-nvim-ultisnips'
 
-"JavaScript
-source ~/.config/nvim/configs/javascript.vim
-
 "RTags
 source ~/.config/nvim/configs/rtags.vim
 
@@ -65,6 +65,7 @@ call plug#end()
 
 " Plugin Setting
 source ~/.config/nvim/configs/autocomplete.vim
+source ~/.config/nvim/configs/syntax_highlight.vim
 
 " General Setting
 set nocompatible	" not compatible with the old-fashion vi mode
