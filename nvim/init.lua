@@ -1,5 +1,4 @@
 -- Basic configuration
-require('setup')
 require('basic')
 require('keybindings')
 require('plugins')

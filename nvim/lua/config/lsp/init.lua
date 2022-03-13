@@ -118,19 +118,16 @@ end)
 require('lspfuzzy').setup {}
 
 ---------------------------------------------------------------
--- lspsaga
+-- keybindings
 ---------------------------------------------------------------
-require('lspsaga').init_lsp_saga()
-utils.map('n', 'gh', "<cmd>lua require'lspsaga.provider'.lsp_finder()<CR>")
-utils.map('n', 'gr', "<cmd>lua require'lspsaga.rename'.rename()<CR>")
-utils.map('n', 'gd', "<cmd>lua require'lspsaga.provider'.preview_definition()<CR>")
+utils.map('n', 'gh', "<cmd>lua vim.lsp.buf.references()<CR>")
+utils.map('n', 'gr', "<cmd>lua vim.lsp.buf.rename()<CR>")
+utils.map('n', 'gd', "<cmd>lua vim.lsp.buf.definition()<CR>")
+utils.map('n', 'gf', "<cmd>lua vim.lsp.buf.formatting()<CR>")
 
-utils.map('n', '<leader>cd', "<cmd>lua require'lspsaga.diagnostic'.show_line_diagnostics()<CR>")
-utils.map('n', '<leader>cc', "<cmd>lua require'lspsaga.diagnostic'.show_cursor_diagnostics()<CR>")
+--utils.map('n', '<leader>cd', "<cmd>lua require'lspsaga.diagnostic'.show_line_diagnostics()<CR>")
+--utils.map('n', '<leader>cc', "<cmd>lua require'lspsaga.diagnostic'.show_cursor_diagnostics()<CR>")
 
 -- jump diagnostic
-utils.map('n', '[e', "<cmd>Lspsaga diagnostic_jump_next<CR>")
-utils.map('n', ']e', "<cmd>Lspsaga diagnostic_jump_prev<CR>")
-
--- code action
-utils.map('n', '<leader>ca', "<cmd>lua require'lspsaga.codeaction'.code_action()<CR>")
+utils.map('n', '[e', "<cmd>lua vim.lsp.diagnostic.goto_next()<CR>")
+utils.map('n', ']e', "<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>")

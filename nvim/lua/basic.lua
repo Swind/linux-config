@@ -14,6 +14,7 @@ opt.mouse = 'a'
 opt.clipboard = 'unnamedplus'        -- Copy/Paste to system clipboard
 opt.swapfile = false                 -- Don't use swapfile
 opt.completeopt = 'menuone,noselect' -- Autocomplete options
+
 g.encoding = "UTF-8"                 -- UTF-8
 opt.fileencoding = 'utf-8'
 
