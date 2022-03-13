@@ -43,12 +43,7 @@ return require('packer').startup(function(use)
     },
   }
 
-  -- lspsaga
-  -- A light-weight lsp plugin based on neovim built-in lsp with highly a performant UI.
-  use {
-    'glepnir/lspsaga.nvim'
-  }
-
+  use { 'onsails/lspkind-nvim' }
 
   -- Syntax highlight
   use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
@@ -61,7 +56,6 @@ return require('packer').startup(function(use)
       'kyazdani42/nvim-web-devicons' -- optional, for file icon
     }
   }
-  
 
   -- Fuzzy finder
   use {
