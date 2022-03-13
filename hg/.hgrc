@@ -1,8 +1,0 @@
-[ui]
-username = Swind <swind@code-life.info>
-[alias]
-slog = log --style=/Users/Swind/.myconfig/hg/mercurial-cli-templates/map-cmdline.slog
-nlog = log --style=/Users/Swind/.myconfig/hg/mercurial-cli-templates/map-cmdline.nlog
-sglog = glog --style=/Users/Swind/.myconfig/hg/mercurial-cli-templates/map-cmdline.sglog
-[extensions]
-graphlog =

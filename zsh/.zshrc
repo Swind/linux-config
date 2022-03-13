@@ -62,15 +62,15 @@ fi
 #################################################
 export TERM=xterm-256color
 
-export ANDROID_SDK_HOME="/home/swind/Software/android-sdk-linux"
-export ANDROID_HOME="/home/swind/Software/android-sdk-linux"
+export ANDROID_SDK_HOME="/root/Software/android-sdk-linux"
+export ANDROID_HOME="/root/Software/android-sdk-linux"
 export PATH="$PATH:$ANDROID_SDK_HOME/tools/bin:$ANDROID_SDK_HOME/platform-tools:$ANDROID_SDK_HOME/build-tools/27.0.3:$ANDROID_SDK_HOME/ndk-bundle"
 export PATH="$PATH:/opt/gradle/gradle-4.10.3/bin"
 
 export JAVA_HOME="/usr/lib/jvm/default-java"
 
 export GOPATH=$HOME/Program/Go
-export PATH="$PATH:/home/swind/.local/bin:/home/swind/bin:/home/swind/Software/depot_tools:/home/swind/Software/go/bin:/home/swind/Program/Go/bin"
+export PATH="$PATH:/root/.local/bin:/root/bin:/root/Software/depot_tools:/root/Software/go/bin:/root/Program/Go/bin"
 
 # The fuck
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
@@ -92,10 +92,10 @@ stty -ixon
 bindkey '^s' pet-select
 
 # NodeJS
-export PATH="$PATH:/home/swind/Software/node/bin:/home/swind/.yarn/bin"
+export PATH="$PATH:/root/Software/node/bin:/root/.yarn/bin"
 
 # Autojump
-[[ -s /home/swind/.autojump/etc/profile.d/autojump.sh ]] && source /home/swind/.autojump/etc/profile.d/autojump.sh
+[[ -s /root/.autojump/etc/profile.d/autojump.sh ]] && source /root/.autojump/etc/profile.d/autojump.sh
 
 # History
 HISTFILE=~/.zsh_history
