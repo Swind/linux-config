@@ -7,3 +7,6 @@
 [submodule "zsh/zplug"]
 	path = zsh/zplug
 	url = https://github.com/zplug/zplug.git
+[submodule "nvim/after/pack/packer/start/packer.nvim"]
+	path = nvim/after/pack/packer/start/packer.nvim
+	url = https://github.com/wbthomason/packer.nvim
