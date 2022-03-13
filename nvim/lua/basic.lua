@@ -4,8 +4,6 @@
 ------------------------------------------------------------------------
 -- Neovim API alias
 ------------------------------------------------------------------------
-local cmd = vim.cmd                  -- Execute Vim commands
-local exec = vim.api.nvim_exec       -- Execute Vimscript
 local g = vim.g                      -- Global variables
 local opt = vim.opt                  -- Set options ( global/buffer/windows-scoped )
  
@@ -45,8 +43,8 @@ opt.linebreak = true                  -- Wrap on word boundary
 opt.hlsearch = true                   -- highlight all its matches.
 
 -- always at least eight lines visible above/below the cursor 
--- opt.scrolloff = 4
--- opt.sidescrolloff = 4
+opt.scrolloff = 4
+opt.sidescrolloff = 4
 
 -- while typing a search command, show where the pattern, 
 -- as it was typed so far, matches.

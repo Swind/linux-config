@@ -104,15 +104,15 @@ _G.packer_plugins = {
     path = "/root/.local/share/nvim/site/pack/packer/start/fzf.vim",
     url = "https://github.com/junegunn/fzf.vim"
   },
+  ["gruvbox-material"] = {
+    loaded = true,
+    path = "/root/.local/share/nvim/site/pack/packer/start/gruvbox-material",
+    url = "https://github.com/sainnhe/gruvbox-material"
+  },
   ["lspsaga.nvim"] = {
     loaded = true,
     path = "/root/.local/share/nvim/site/pack/packer/start/lspsaga.nvim",
     url = "https://github.com/glepnir/lspsaga.nvim"
-  },
-  ["material.nvim"] = {
-    loaded = true,
-    path = "/root/.local/share/nvim/site/pack/packer/start/material.nvim",
-    url = "https://github.com/marko-cerovac/material.nvim"
   },
   ["nvim-cmp"] = {
     loaded = true,
