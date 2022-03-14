@@ -70,7 +70,7 @@ local config = {
     local map = vim.api.nvim_set_keymap
     local set = vim.opt
     -- Set options
-    set.relativenumber = true
+    set.relativenumber = false
 
     -- Set key bindings
     map("n", "<C-s>", ":w!<CR>", opts)
