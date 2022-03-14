@@ -43,6 +43,7 @@ map("n", "<leader>pu", "<cmd>PackerUpdate<cr>", opts)
 map("n", "<leader>lf", "<cmd>lua vim.lsp.buf.formatting_sync()<cr>", opts)
 map("n", "<leader>li", "<cmd>LspInfo<cr>", opts)
 map("n", "<leader>lI", "<cmd>LspInstallInfo<cr>", opts)
+map("n", "<F4>", "<cmd>ClangdSwitchSourceHeader<cr>", opts)
 
 -- NvimTree
 if config.enabled.nvim_tree then
@@ -82,16 +83,14 @@ map("n", "<leader>ls", "<cmd>Telescope lsp_document_symbols<CR>", opts)
 
 -- Lspsaga
 if config.enabled.lspsaga then
-  map("n", "gl", "<cmd>Lspsaga show_line_diagnostics<CR>", opts)
+  map("n", "cd", "<cmd>Lspsaga show_line_diagnostics<CR>", opts)
   map("n", "ca", "<cmd>Lspsaga code_action<CR>", opts)
   map("n", "K", "<cmd>Lspsaga hover_doc<CR>", opts)
   map("n", "rn", "<cmd>Lspsaga rename<CR>", opts)
   map("n", "gj", "<cmd>Lspsaga diagnostic_jump_next<cr>", opts)
   map("n", "gk", "<cmd>Lspsaga diagnostic_jump_prev<cr>", opts)
-  map("n", "<C-u>", "<cmd>lua require('lspsaga.action').smart_scroll_with_saga(-1)<cr>", opts)
-  map("n", "<C-d>", "<cmd>lua require('lspsaga.action').smart_scroll_with_saga(1)<cr>", opts)
-  map("n", "<leader>la", "<cmd>Lspsaga code_action<CR>", opts)
-  map("n", "<leader>lr", "<cmd>Lspsaga rename<CR>", opts)
+  map("n", "gh", "<cmd>lua require'lspsaga.provider'.lsp_finder()<cr>", opts)
+  map("n", "gd", "<cmd>lua require'lspsaga.provider'.preview_definition()<cr>", opts)
 end
 
 -- Comment

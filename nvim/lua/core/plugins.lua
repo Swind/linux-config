@@ -1,5 +1,4 @@
 local M = {}
-
 local packer_status_ok, packer = pcall(require, "packer")
 if not packer_status_ok then
   return
