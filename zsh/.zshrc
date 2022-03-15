@@ -51,7 +51,7 @@ alias vim=nvim
 export PYENV_ROOT="$HOME/.pyenv"
 export PATH="$PYENV_ROOT/bin:$PATH"
 if command -v pyenv 1>/dev/null 2>&1; then
-  eval "$(pyenv init -)"
+  eval "$(pyenv init --path)"
   eval "$(pyenv virtualenv-init -)"
 fi
 
@@ -62,15 +62,28 @@ fi
 #################################################
 export TERM=xterm-256color
 
-export ANDROID_SDK_HOME="/home/swind/Software/android-sdk-linux"
-export ANDROID_HOME="/home/swind/Software/android-sdk-linux"
-export PATH="$PATH:$ANDROID_SDK_HOME/tools/bin:$ANDROID_SDK_HOME/platform-tools:$ANDROID_SDK_HOME/build-tools/27.0.3:$ANDROID_SDK_HOME/ndk-bundle"
-export PATH="$PATH:/opt/gradle/gradle-4.10.3/bin"
-
 export JAVA_HOME="/usr/lib/jvm/default-java"
 
-export GOPATH=$HOME/Program/Go
-export PATH="$PATH:/home/swind/.local/bin:/home/swind/bin:/home/swind/Software/depot_tools:/home/swind/Software/go/bin:/home/swind/Program/Go/bin"
+# Config user bin path
+export PATH=$HOME/.local/bin:$HOME/bin:$PATH
+
+# depot_tools
+export PATH=$HOME/Software/depot_tools:$PATH
+
+# NodeJS
+export PATH=$HOME/Software/node/bin:$HOME/.yarn/bin:$PATH
+
+# android-studio
+export PATH=$HOME/Software/android-studio/bin:$PATH
+
+# Flutter
+export PATH=$HOME/Software/flutter/bin:$PATH
+
+# node
+export PATH=$HOME/Software/node/bin:$PATH
+
+# go
+export PATH=$HOME/Software/go/bin:$PATH
 
 # The fuck
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
@@ -81,21 +94,8 @@ function prev() {
   sh -c "pet new `printf %q "$PREV"`"
 }
 
-# Pet
-function pet-select() {
-  BUFFER=$(pet search --query "$LBUFFER")
-  CURSOR=$#BUFFER
-  zle redisplay
-}
-zle -N pet-select
-stty -ixon
-bindkey '^s' pet-select
-
-# NodeJS
-export PATH="$PATH:/home/swind/Software/node/bin:/home/swind/.yarn/bin"
-
 # Autojump
-[[ -s /home/swind/.autojump/etc/profile.d/autojump.sh ]] && source /home/swind/.autojump/etc/profile.d/autojump.sh
+[[ -s $HOME/.autojump/etc/profile.d/autojump.sh ]] && source $HOME/.autojump/etc/profile.d/autojump.sh
 
 # History
 HISTFILE=~/.zsh_history
@@ -115,3 +115,4 @@ export SCCACHE_CACHE_SIZE="32G"
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 alias fall="find . -name '*.cpp' -o -name '*.h' | sed 's| |\\ |g' | xargs clang-format -i"
+eval "$(navi widget zsh)"

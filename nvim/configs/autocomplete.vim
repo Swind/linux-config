@@ -74,11 +74,45 @@ end
 
 local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
 
+local function switch_source_header_splitcmd(bufnr, splitcmd)
+  bufnr = require'lspconfig'.util.validate_bufnr(bufnr)
+  local clangd_client = require'lspconfig'.util.get_active_client_by_name(bufnr, 'clangd')
+  local params = {uri = vim.uri_from_bufnr(bufnr)}
+  if clangd_client then
+    clangd_client.request("textDocument/switchSourceHeader", params, function(err, result)
+      if err then
+        error(tostring(err))
+      end
+      if not result then
+        print("Corresponding file can’t be determined")
+        return
+      end
+      vim.api.nvim_command(splitcmd .. " " .. vim.uri_to_fname(result))
+    end, bufnr)
+  else
+    print 'textDocument/switchSourceHeader is not supported by the clangd server active on the current buffer'
+  end
+end
+
 require'lspconfig'.clangd.setup{
   on_attach = on_attach,
   filetypes = { "c", "cpp", "objc", "objcpp", "cc" },
   flags = {
     debounce_text_changes = 150,
+  },
+  commands = {
+    	ClangdSwitchSourceHeader = {
+    		function() switch_source_header_splitcmd(0, "edit") end;
+    		description = "Open source/header in current buffer";
+    	},
+    	ClangdSwitchSourceHeaderVSplit = {
+    		function() switch_source_header_splitcmd(0, "vsplit") end;
+    		description = "Open source/header in a new vsplit";
+    	},
+    	ClangdSwitchSourceHeaderSplit = {
+    		function() switch_source_header_splitcmd(0, "split") end;
+    		description = "Open source/header in a new split";
+    	}
   },
   capabilities = capabilities
 }
@@ -140,3 +174,4 @@ nnoremap <silent><leader>la <cmd>lua vim.lsp.buf.code_action()<CR>
 nnoremap <silent><leader>l; <cmd>lua vim.lsp.diagnostic.goto_prev()<CR>
 nnoremap <silent><leader>l, <cmd>lua vim.lsp.diagnostic.goto_next()<CR>
 
+map <F4> :ClangdSwitchSourceHeader<CR>

@@ -174,7 +174,7 @@ cmap cd. lcd %:p:h
 autocmd! bufwritepost init.vim source %
 
 autocmd FileType c,cpp,java,php,py autocmd BufWritePre <buffer> %s/\s\+$//e
-map <F4> :e %:p:s,.h$,.X123X,:s,.cc$,.h,:s,.X123X$,.cc,<CR>
+"map <F4> :e %:p:s,.h$,.X123X,:s,.cc$,.h,:s,.X123X$,.cc,<CR>
 
 "Highlight unwanted spaces
 highlight ExtraWhitespace ctermbg=red guibg=red
