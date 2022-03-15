@@ -72,8 +72,15 @@ local function lsp_keymaps(bufnr)
 end
 
 M.on_attach = function(client, bufnr)
-  client.resolved_capabilities.document_formatting = false
-  client.resolved_capabilities.document_range_formatting = false
+  if client.name == "tsserver" then
+    client.resolved_capabilities.document_formatting = false
+  elseif client.name == "jsonls" then
+    client.resolved_capabilities.document_formatting = false
+  elseif client.name == "html" then
+    client.resolved_capabilities.document_formatting = false
+  elseif client.name == "sumneko_lua" then
+    client.resolved_capabilities.document_formatting = false
+  end
 
   local on_attach_override = require("core.utils").user_settings().overrides.lsp_installer.on_attach_override
   if on_attach_override ~= nil then
