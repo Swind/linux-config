@@ -19,9 +19,11 @@ function M.config()
     debug = false,
     sources = {
       -- Set a formatter
-      formatting.rufo,
+      formatting.clang_format.with({
+        filetypes = { "cc", "cpp", "h" }
+      }),
       -- Set a linter
-      diagnostics.rubocop,
+      -- diagnostics.rubocop,
     },
     -- NOTE: You can remove this on attach function to disable format on save
     on_attach = function(client)
