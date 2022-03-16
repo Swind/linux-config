@@ -92,6 +92,14 @@ function M.config()
   }
 
   ins_left {
+    "filename",
+    cond = conditions.buffer_not_empty,
+    color = { fg = colors.magenta, gui = "bold" },
+    padding = { left = 2, right = 1 },
+    path = 1,
+  }
+
+  ins_left {
     "diff",
     symbols = { added = " ", modified = "柳", removed = " " },
     diff_color = {
