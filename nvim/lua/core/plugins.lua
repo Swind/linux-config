@@ -316,7 +316,7 @@ local astro_plugins = {
     event = { "InsertEnter" },
     config = function()
       require("better_escape").setup {
-        mapping = { "ii", "jj", "jk", "kj" },
+        mapping = { "ii", "jj", "kj" },
         timeout = vim.o.timeoutlen,
         keys = "<ESC>",
       }
