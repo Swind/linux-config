@@ -9,6 +9,10 @@ return {
           -- pylsp.plugins.jedi.environment
           environment = pyenv_python,
         },
+        flake8 = {
+          maxLineLength = 128,
+          ignore = {'E111', 'E501'}
+        }
       }
     }
   }
