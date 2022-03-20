@@ -17,7 +17,7 @@ function M.config()
         debug = false,
         sources = {
             -- Set a formatter
-            formatting.lua_format,
+            formatting.stylua,
             -- Set a linter
             -- diagnostics.rubocop,
         },

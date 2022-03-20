@@ -310,19 +310,6 @@ local astro_plugins = {
     disable = not config.enabled.which_key,
   },
 
-  -- Smooth escaping
-  ["max397574/better-escape.nvim"] = {
-    "max397574/better-escape.nvim",
-    event = { "InsertEnter" },
-    config = function()
-      require("better_escape").setup {
-        mapping = { "ii", "jj", "kj" },
-        timeout = vim.o.timeoutlen,
-        keys = "<ESC>",
-      }
-    end,
-  },
-
   -- Get extra JSON schemas
   ["b0o/SchemaStore.nvim"] = { "b0o/SchemaStore.nvim" },
 }
