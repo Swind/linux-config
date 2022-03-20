@@ -1,7 +1,10 @@
 local M = {}
 
 function M.config()
-  local dap = require "dap"
+  local status_ok, dap = pcall(require, "dap")
+  if not status_ok then
+    return
+  end
 
   local dap_python = require "dap-python"
 
