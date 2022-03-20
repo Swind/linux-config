@@ -312,6 +312,33 @@ local astro_plugins = {
 
   -- Get extra JSON schemas
   ["b0o/SchemaStore.nvim"] = { "b0o/SchemaStore.nvim" },
+
+  -- Debug
+  ["mfussenegger/nvim-dap"] = {
+    "mfussenegger/nvim-dap",
+    config = function()
+      require("configs.nvim-dap").config()
+    end,
+    disable = not config.enabled.nvim_dap,
+    requires = {
+      {
+        "mfussenegger/nvim-dap-python",
+        after = "nvim-dap",
+        disable = not config.enabled.nvim_dap,
+      },
+      {
+        "rcarriga/nvim-dap-ui",
+        before = "nvim-dap",
+        disable = not config.enabled.nvim_dap,
+      },
+      --  an adapter for the Neovim lua language.
+      {
+        "jbyuki/one-small-step-for-vimkind",
+        after = "nvim-dap",
+        disable = not config.enabled.nvim_dap,
+      },
+    },
+  },
 }
 
 packer.startup {

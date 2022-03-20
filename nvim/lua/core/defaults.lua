@@ -45,6 +45,7 @@ local config = {
     neoscroll = false,
     ts_rainbow = true,
     ts_autotag = true,
+    nvim_dap = true,
   },
 
   packer_file = vim.fn.stdpath "config" .. "/lua/packer_compiled.lua",

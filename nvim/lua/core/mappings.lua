@@ -119,6 +119,24 @@ if config.enabled.symbols_outline then
   map("n", "<leader>so", "<cmd>SymbolsOutline<CR>", opts)
 end
 
+-- nvim-dap
+map("n", "<leader>dC", '<cmd>lua require"dap".continue()<CR>', opts)
+map("n", "<leader>db", '<cmd>lua require"dap".toggle_breakpoint()<CR>', opts)
+map("n", "<leader>dB", ':lua require"dap".set_breakpoint(vim.fn.input("Breakpoint condition: "))<cr>', opts)
+map("n", "<leader>do", '<cmd>lua require"dap".step_over()<CR>', opts)
+map("n", "<leader>dO", '<cmd>lua require"dap".step_out()<CR>', opts)
+map("n", "<leader>dn", '<cmd>lua require"dap".step_into()<CR>', opts)
+map("n", "<leader>dN", '<cmd>lua require"dap".step_back()<CR>', opts)
+map("n", "<leader>dr", '<cmd>lua require"dap".repl.toggle()<CR>', opts)
+map("n", "<leader>d.", '<cmd>lua require"dap".goto_()<CR>', opts)
+map("n", "<leader>dh", '<cmd>lua require"dap".run_to_cursor()<CR>', opts)
+map("n", "<leader>de", '<cmd>lua require"dap".set_exception_breakpoints()<CR>', opts)
+map("n", "<leader>dv", "<cmd>Telescope dap variables<CR>", opts)
+map("n", "<leader>dc", "<cmd>Telescope dap commands<CR>", opts)
+map("n", "<leader>dx", '<cmd>lua require"dapui".eval()<CR>', opts)
+map("n", "<leader>dX", '<cmd>lua require"dapui".eval(vim.fn.input("expression: "))<CR>', opts)
+map("x", "<leader>dx", '<cmd>lua require"dapui".eval()<CR>', opts)
+
 -- Visual --
 -- Stay in indent mode
 map("v", "<", "<gv", opts)
