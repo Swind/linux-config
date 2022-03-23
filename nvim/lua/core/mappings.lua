@@ -29,7 +29,7 @@ map("n", "<S-h>", "<cmd>bprevious<CR>", opts)
 -- Standard Operations
 map("n", "<leader>w", "<cmd>w<CR>", opts)
 map("n", "<leader>q", "<cmd>q<CR>", opts)
-map("n", "<leader>c", "<cmd>Bdelete!<CR>", opts)
+map("n", "<leader>c", "<cmd>Bdelete<CR>", opts)
 map("n", "<leader>h", "<cmd>nohlsearch<CR>", opts)
 
 -- Packer
@@ -136,6 +136,9 @@ map("n", "<leader>dc", "<cmd>Telescope dap commands<CR>", opts)
 map("n", "<leader>dx", '<cmd>lua require"dapui".eval()<CR>', opts)
 map("n", "<leader>dX", '<cmd>lua require"dapui".eval(vim.fn.input("expression: "))<CR>', opts)
 map("x", "<leader>dx", '<cmd>lua require"dapui".eval()<CR>', opts)
+
+-- Copilot
+map("i", "<C-l>", "copilot#Accept('')", { silent = true, expr = true })
 
 -- Visual --
 -- Stay in indent mode

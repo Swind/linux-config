@@ -72,9 +72,7 @@ local function lsp_keymaps(bufnr)
 end
 
 M.on_attach = function(client, bufnr)
-  if client.name == "tsserver" then
-    client.resolved_capabilities.document_formatting = false
-  elseif client.name == "jsonls" then
+  if client.name == "jsonls" then
     client.resolved_capabilities.document_formatting = false
   elseif client.name == "html" then
     client.resolved_capabilities.document_formatting = false
@@ -88,7 +86,7 @@ M.on_attach = function(client, bufnr)
   end
 
   if client.resolved_capabilities.document_formatting then
-      vim.cmd "autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_sync()"
+    vim.cmd "autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_sync()"
   end
 
   -- lsp_keymaps(bufnr)

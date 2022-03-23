@@ -339,6 +339,16 @@ local astro_plugins = {
       },
     },
   },
+
+  -- Coplit
+  -- Keymaps popup
+  ["github/copilot.vim"] = {
+    "github/copilot.vim",
+    config = function()
+      require("configs.copilot").config()
+    end,
+    disable = not config.enabled.copilot,
+  },
 }
 
 packer.startup {
