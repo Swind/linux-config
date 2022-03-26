@@ -5,7 +5,6 @@ local config = {
 
   -- Add plugins
   plugins = {
-    -- { "andweeb/presence.nvim" },
     -- {
     -- "ray-x/lsp_signature.nvim",
     -- event = "BufRead",
@@ -13,6 +12,16 @@ local config = {
     -- require("lsp_signature").setup()
     -- end,
     -- },
+
+    -- Coplit
+    -- Keymaps popup
+    {
+      "github/copilot.vim",
+      -- event = "BufRead",
+      config = function()
+        require("user.configs.copilot").config()
+      end,
+    },
   },
 
   overrides = {
@@ -73,6 +82,9 @@ local config = {
     local set = vim.opt
     -- Set options
     set.relativenumber = false
+
+    -- Copilot
+    map("i", "<C-l>", "copilot#Accept('')", { silent = true, expr = true })
 
     -- Set key bindings
     map("n", "<C-s>", ":w!<CR>", opts)

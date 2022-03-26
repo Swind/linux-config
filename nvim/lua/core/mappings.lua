@@ -137,9 +137,6 @@ map("n", "<leader>dx", '<cmd>lua require"dapui".eval()<CR>', opts)
 map("n", "<leader>dX", '<cmd>lua require"dapui".eval(vim.fn.input("expression: "))<CR>', opts)
 map("x", "<leader>dx", '<cmd>lua require"dapui".eval()<CR>', opts)
 
--- Copilot
-map("i", "<C-l>", "copilot#Accept('')", { silent = true, expr = true })
-
 -- Visual --
 -- Stay in indent mode
 map("v", "<", "<gv", opts)
