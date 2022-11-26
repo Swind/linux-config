@@ -223,7 +223,7 @@ local config = {
         -- os.getenv "HOME" .. "/.pyenv/versions/neovim/bin/yapf"
         null_ls.builtins.formatting.yapf.with { command = os.getenv "HOME" .. "/.pyenv/versions/neovim/bin/yapf" },
         -- Set a linter
-        null_ls.builtins.diagnostics.mypy,
+        -- null_ls.builtins.diagnostics.mypy,A
       }
       -- set up null-ls's on_attach function
       -- NOTE: You can remove this on attach function to disable format on save
