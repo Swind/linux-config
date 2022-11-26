@@ -14,7 +14,6 @@ export LANG="en_US.UTF-8"
 export LC_ALL="en_US.UTF-8"
 
 MY_CONFIG_HOME=~/.myconfig
-source $MY_CONFIG_HOME/zsh/.zshrc.zplug
 
 ################################################
 #
@@ -37,20 +36,11 @@ fi
 #   General Setting
 #
 ##################################################
+
+# Alias
 alias l="ls -lah --color=auto"
 alias vim=nvim
-
-##################################################
-#
-#  Python
-#
-##################################################
-export PYENV_ROOT="$HOME/.pyenv"
-export PATH="$PYENV_ROOT/bin:$PATH"
-if command -v pyenv 1>/dev/null 2>&1; then
-  eval "$(pyenv init -)"
-  eval "$(pyenv virtualenv-init -)"
-fi
+alias fall="find . -name '*.cpp' -o -name '*.h' | sed 's| |\\ |g' | xargs clang-format -i"
 
 ##################################################
 #
@@ -59,55 +49,52 @@ fi
 #################################################
 export TERM=xterm-256color
 
-export ANDROID_SDK_HOME="/home/swind/Software/android-sdk-linux"
-export ANDROID_HOME="/home/swind/Software/android-sdk-linux"
-export PATH="$ANDROID_SDK_HOME/tools/bin:$ANDROID_SDK_HOME/platform-tools:$ANDROID_SDK_HOME/build-tools/27.0.3:$ANDROID_SDK_HOME/ndk-bundle:$PATH"
-
-export JAVA_HOME="/usr/lib/jvm/default-java"
-
-export GOPATH=$HOME/Program/Go
-export PATH="$HOME/.local/bin:$HOME/bin:$HOME/Software/depot_tools:$HOME/Software/go/bin:$HOME/Program/Go/bin:$PATH"
-
-# The fuck
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-eval $(thefuck --alias)
-
-function prev() {
-  PREV=$(fc -lrn | head -n 1)
-  sh -c "pet new `printf %q "$PREV"`"
-}
-
-# Pet
-function pet-select() {
-  BUFFER=$(pet search --query "$LBUFFER")
-  CURSOR=$#BUFFER
-  zle redisplay
-}
-zle -N pet-select
-stty -ixon
-bindkey '^s' pet-select
-
-# NodeJS
-export PATH="$HOME/Software/node/bin:$HOME/.yarn/bin:$PATH"
-
-# Autojump
-[[ -s /home/swind/.autojump/etc/profile.d/autojump.sh ]] && source /home/swind/.autojump/etc/profile.d/autojump.sh
-
 # History
 HISTFILE=~/.zsh_history
 HISTSIZE=10000
 SAVEHIST=1000
 setopt INC_APPEND_HISTORY_TIME
 
+##################################################
+#
+# zsh config 
+#
+#################################################
+
+### Added by Zinit's installer
+if [[ ! -f $HOME/.local/share/zinit/zinit.git/zinit.zsh ]]; then
+    print -P "%F{33} %F{220}Installing %F{33}ZDHARMA-CONTINUUM%F{220} Initiative Plugin Manager (%F{33}zdharma-continuum/zinit%F{220})…%f"
+    command mkdir -p "$HOME/.local/share/zinit" && command chmod g-rwX "$HOME/.local/share/zinit"
+    command git clone https://github.com/zdharma-continuum/zinit "$HOME/.local/share/zinit/zinit.git" && \
+        print -P "%F{33} %F{34}Installation successful.%f%b" || \
+        print -P "%F{160} The clone has failed.%f%b"
+fi
+
+source "$HOME/.local/share/zinit/zinit.git/zinit.zsh"
+autoload -Uz _zinit
+(( ${+_comps} )) && _comps[zinit]=_zinit
+
+# powerlevel10k
+zinit ice depth=1; zinit light romkatv/powerlevel10k
+
+# zsh 
+zinit light zsh-users/zsh-completions
+zinit light zsh-users/zsh-autosuggestions
+zinit light zsh-users/zsh-history-substring-search
+zinit light zdharma-continuum/fast-syntax-highlighting
+
+# oh my zsh
+zinit snippet OMZ::lib/completion.zsh
+zinit snippet OMZ::lib/history.zsh
+zinit snippet OMZ::lib/key-bindings.zsh
+zinit snippet OMZ::lib/theme-and-appearance.zsh
+
+# key binding
+bindkey '^[[A' history-substring-search-up
+bindkey '^[[B' history-substring-search-down
+
+# oh-my-zsh
 DISABLE_UNTRACKED_FILES_DIRTY="true"
-
-# Rust
-source $HOME/.cargo/env
-
-# sccache
-export SCCACHE_CACHE_SIZE="32G"
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
-
-alias fall="find . -name '*.cpp' -o -name '*.h' | sed 's| |\\ |g' | xargs clang-format -i"
