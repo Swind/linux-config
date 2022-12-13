@@ -1,8 +1,11 @@
 #!/bin/bash
 
+source $(dirname "$0")/lib.sh
+ARCH=$(detect_arch)
+
 SOFTWARE_DIR=$HOME/Software
 NODE_DIR=$SOFTWARE_DIR/node
-NODE_URL=https://nodejs.org/dist/v18.12.1/node-v18.12.1-linux-x64.tar.xz
+NODE_URL=https://nodejs.org/dist/v18.12.1/node-v18.12.1-linux-${ARCH}.tar.xz
 NODE_BASE_NAME="${NODE_URL##*/}"
 
 echo "Removing $NODE_DIR"

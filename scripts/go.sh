@@ -1,8 +1,11 @@
 #!/bin/bash
 
+source $(dirname "$0")/lib.sh
+ARCH=$(detect_arch)
+
 SOFTWARE_DIR=$HOME/Software
 GO_DIR=$SOFTWARE_DIR/go
-GO_URL=https://go.dev/dl/go1.19.3.linux-amd64.tar.gz
+GO_URL=https://go.dev/dl/go1.19.3.linux-${ARCH}.tar.gz
 GO_BASE_NAME="${GO_URL##*/}"
 
 echo "Removing $GO_DIR"
