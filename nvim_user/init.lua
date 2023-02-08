@@ -49,6 +49,9 @@ local config = {
 		g = {
 			mapleader = ",", -- sets vim.g.mapleader
 			python3_host_prog = os.getenv("HOME") .. "/.pyenv/versions/neovim/bin/python",
+			copilot_no_tab_map = true,
+			copilot_assume_mapped = true,
+			copilot_tab_fallback = "",
 		},
 	},
 	-- If you need more control, you can use the function()...end notation
@@ -171,12 +174,39 @@ local config = {
 			["<leader>bc"] = { "<cmd>BufferLinePickClose<cr>", desc = "Pick to close" },
 			["<leader>bj"] = { "<cmd>BufferLinePick<cr>", desc = "Pick to jump" },
 			["<leader>bt"] = { "<cmd>BufferLineSortByTabs<cr>", desc = "Sort by tabs" },
+			["<C-p>"] = {
+				function()
+					require("telescope.builtin").find_files({
+						hidden = true,
+						no_ignore = false,
+						file_ignore_patterns = {
+							".git/",
+							".cache",
+							"%.o",
+							"%.a",
+							"%.out",
+							"%.class",
+							"%.pdf",
+							"%.mkv",
+							"%.mp4",
+							"%.zip",
+							"%.pyc",
+							".node_modules/",
+							".vscode/",
+						},
+					})
+				end,
+				desc = "Search all files ( with hidden files )",
+			},
 			-- quick save
 			-- ["<C-s>"] = { ":w!<cr>", desc = "Save File" },  -- change description but the same command
 		},
 		t = {
 			-- setting a mapping to false will disable it
 			-- ["<esc>"] = false,
+		},
+		i = {
+			["<C-L>"] = { "copilot#Accept(<Tab>)", silent = true, expr = true, script = true },
 		},
 	},
 
@@ -204,6 +234,8 @@ local config = {
 			--     require("lsp_signature").setup()
 			--   end,
 			-- },
+			{ "ntpeters/vim-better-whitespace" },
+			{ "github/copilot.vim" },
 		},
 		-- All other entries override the require("<key>").setup({...}) call for default plugins
 		["null-ls"] = function(config) -- overrides `require("null-ls").setup(config)`
@@ -310,9 +342,6 @@ local config = {
 		map("n", "<A-j>", "<C-w>j", opts)
 		map("n", "<A-k>", "<C-w>k", opts)
 		map("n", "<A-l>", "<C-w>l", opts)
-
-		-- Telescope
-		map("n", "<C-p>", "<cmd>Telescope find_files<CR>", opts)
 
 		-- Switch between header and source
 		map("n", "<F4>", "<cmd>ClangdSwitchSourceHeader<CR>", opts)

@@ -5,6 +5,7 @@ CURRENT_DIR=$(dirname "$SCRIPT")
 pushd $CURRENT_DIR
 wget https://starship.rs/install.sh
 chmod 755 install.sh
+mkdir -p $HOME/.local/bin
 ./install.sh -b $HOME/.local/bin
 rm -f install.sh
 popd
