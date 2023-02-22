@@ -1,0 +1,6 @@
+% openssl, ssl
+
+# Get the information in ssl certificate
+openssl x509 -text -noout -in <file>
+
+$ file: ls
