@@ -31,9 +31,11 @@ fi
 ##################################################
 
 # Alias
-alias l="ls -lah --color=auto"
+alias l="exa -lah"
+alias ls="exa"
 alias vim=nvim
 alias fall="find . -name '*.cpp' -o -name '*.h' | sed 's| |\\ |g' | xargs clang-format -i"
+alias gf='dbus-send --type=method_call --dest=org.gnome.Shell /org/gnome/Shell org.gnome.Shell.Eval string:"global.reexec_self()"'
 
 ##################################################
 #
@@ -54,6 +56,9 @@ setopt INC_APPEND_HISTORY_TIME
 #
 #################################################
 
+export DEPOT_TOOLS_UPDATE=0
+export PATH=$HOME/.local/bin:$HOME/Software/depot_tools:$PATH
+
 ### Added by Zinit's installer
 if [[ ! -f $HOME/.local/share/zinit/zinit.git/zinit.zsh ]]; then
     print -P "%F{33} %F{220}Installing %F{33}ZDHARMA-CONTINUUM%F{220} Initiative Plugin Manager (%F{33}zdharma-continuum/zinit%F{220})…%f"
@@ -67,7 +72,7 @@ source "$HOME/.local/share/zinit/zinit.git/zinit.zsh"
 autoload -Uz _zinit
 (( ${+_comps} )) && _comps[zinit]=_zinit
 
-# zsh 
+# zsh
 zinit light zsh-users/zsh-completions
 zinit light zsh-users/zsh-autosuggestions
 zinit light zsh-users/zsh-history-substring-search
@@ -85,6 +90,9 @@ bindkey '^[[B' history-substring-search-down
 
 # oh-my-zsh
 DISABLE_UNTRACKED_FILES_DIRTY="true"
+
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 # Load a few important annexes, without Turbo
 # (this is currently required for annexes)
