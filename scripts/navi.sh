@@ -1,6 +1,6 @@
 #!/bin/bash
 
-ZSHRC_PATH=$HOME/.myconfig/zshrc/.zshrc
+ZSHRC_PATH=$HOME/.myconfig/zsh/.zshrc
 
 cargo install --locked navi
 
