@@ -1,5 +1,7 @@
 #!/bin/bash
 
+ZSHRC_PATH=$HOME/.config/zsh/.zshrc
+
 source $(dirname "$0")/lib.sh
 ARCH=$(detect_arch)
 # if ARCH is x86 convert it to amd64
@@ -21,8 +23,8 @@ tar -zxvf $GO_BASE_NAME
 rm $GO_BASE_NAME
 popd
 
-sed -i '/### GO BLOCK START ###/,/### GO BLOCK END ###/d' $HOME/.zshrc
-cat << 'EOF' >> $HOME/.zshrc
+sed -i '/### GO BLOCK START ###/,/### GO BLOCK END ###/d' $ZSHRC_PATH
+cat << 'EOF' >> $ZSHRC_PATH
 ### GO BLOCK START ###
 export GOBIN=$HOME/.local/bin
 export PATH=$HOME/Software/go/bin:$PATH

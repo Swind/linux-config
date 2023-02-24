@@ -1,5 +1,6 @@
 #!/bin/bash
 
+ZSHRC_PATH=$HOME/.config/zsh/.zshrc
 source $(dirname "$0")/lib.sh
 ARCH=$(detect_arch)
 #if ARCH is x86 convert it to x64
@@ -22,8 +23,8 @@ rm $NODE_BASE_NAME
 mv "${NODE_BASE_NAME%.*.*}" node
 popd
 
-sed -i '/### NODE BLOCK START ###/,/### NODE BLOCK END ###/d' $HOME/.zshrc
-cat << 'EOF' >> $HOME/.zshrc
+sed -i '/### NODE BLOCK START ###/,/### NODE BLOCK END ###/d' $ZSHRC_PATH
+cat << 'EOF' >> $ZSHRC_PATH
 ### NODE BLOCK START ###
 export PATH=$HOME/Software/node/bin:$PATH
 ### NODE BLOCK END ###
