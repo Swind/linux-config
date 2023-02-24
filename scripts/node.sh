@@ -2,6 +2,10 @@
 
 source $(dirname "$0")/lib.sh
 ARCH=$(detect_arch)
+#if ARCH is x86 convert it to x64
+if [ "$ARCH" == "x86" ]; then
+    ARCH="x64"
+fi
 
 SOFTWARE_DIR=$HOME/Software
 NODE_DIR=$SOFTWARE_DIR/node

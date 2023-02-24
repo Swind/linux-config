@@ -2,6 +2,10 @@
 
 source $(dirname "$0")/lib.sh
 ARCH=$(detect_arch)
+# if ARCH is x86 convert it to amd64
+if [ "$ARCH" == "x86" ]; then
+    ARCH="amd64"
+fi
 
 SOFTWARE_DIR=$HOME/Software
 GO_DIR=$SOFTWARE_DIR/go

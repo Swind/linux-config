@@ -1,5 +1,7 @@
 #!/bin/bash
 
+ZSHRC_PATH=$HOME/.config/zsh/.zshrc
+
 echo "Installing pyenv..."
 # Install Python build dependencies
 sudo apt update; sudo apt install -y make build-essential libssl-dev zlib1g-dev \
@@ -11,8 +13,8 @@ if [ ! -d "$HOME/.pyenv" ]; then
 fi
 
 
-sed -i '/### PYENV BLOCK START ###/,/### PYENV BLOCK END ###/d' $HOME/.zshrc
-cat << 'EOF' >> $HOME/.zshrc
+sed -i '/### PYENV BLOCK START ###/,/### PYENV BLOCK END ###/d' $ZSHRC_PATH
+cat << 'EOF' >> $ZSHRC_PATH
 ### PYENV BLOCK START ###
 export PYENV_ROOT="$HOME/.pyenv"
 command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"

@@ -277,7 +277,6 @@ local config = {
 		},
 		-- use mason-lspconfig to configure LSP installations
 		["mason-lspconfig"] = { -- overrides `require("mason-lspconfig").setup(...)`
-			ensure_installed = { "sumneko_lua" },
 		},
 		-- use mason-tool-installer to configure DAP/Formatters/Linter installation
 		["mason-tool-installer"] = { -- overrides `require("mason-tool-installer").setup(...)`
