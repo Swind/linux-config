@@ -121,6 +121,25 @@ local config = {
 				-- ["<leader>lf"] = false -- disable formatting keymap
 			},
 		},
+		formatting = {
+			-- control auto formatting on save
+			format_on_save = {
+				enabled = false, -- enable or disable format on save globally
+				allow_filetypes = { -- enable format on save for specified filetypes only
+					-- "go",
+				},
+				ignore_filetypes = { -- disable format on save for specified filetypes
+					-- "python",
+				},
+			},
+			disabled = { -- disable formatting capabilities for the listed language servers
+				-- "sumneko_lua",
+			},
+			timeout_ms = 1000, -- default format timeout
+			-- filter = function(client) -- fully override the default formatting function
+			--   return true
+			-- end
+		},
 		-- add to the global LSP on_attach function
 		-- on_attach = function(client, bufnr)
 		-- end,
@@ -260,15 +279,15 @@ local config = {
 			}
 			-- set up null-ls's on_attach function
 			-- NOTE: You can remove this on attach function to disable format on save
-			config.on_attach = function(client)
-				if client.server_capabilities.document_formatting then
-					vim.api.nvim_create_autocmd("BufWritePre", {
-						desc = "Auto format before save",
-						pattern = "<buffer>",
-						callback = vim.lsp.buf.format,
-					})
-				end
-			end
+			-- config.on_attach = function(client)
+			-- 	if client.server_capabilities.document_formatting then
+			-- 		vim.api.nvim_create_autocmd("BufWritePre", {
+			-- 			desc = "Auto format before save",
+			-- 			pattern = "<buffer>",
+			-- 			callback = vim.lsp.buf.format,
+			-- 		})
+			-- 	end
+			-- end
 			return config -- return final config table to use in require("null-ls").setup(config)
 		end,
 		treesitter = { -- overrides `require("treesitter").setup(...)`
