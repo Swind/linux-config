@@ -1,5 +1,6 @@
 #!/bin/bash
 
+ZSHRC_PATH=$HOME/.config/zsh/.zshrc
 CURRENT_DIR=$(dirname "$SCRIPT")
 
 pushd $CURRENT_DIR
@@ -10,7 +11,7 @@ mkdir -p $HOME/.local/bin
 rm -f install.sh
 popd
 
-sed -i '/### STARSHIP BLOCK START ###/,/### STARSHIP BLOCK END ###/d' $HOME/.zshrc
+sed -i '/### STARSHIP BLOCK START ###/,/### STARSHIP BLOCK END ###/d' $ZSHRC_PATH
 cat << 'EOF' >> $HOME/.zshrc
 ### STARSHIP BLOCK START ###
 eval "$(starship init zsh)"
