@@ -33,9 +33,9 @@ return {
         require("telescope.builtin").find_files({
           hidden = true,
           no_ignore = false,
-          file_ignore_patterns = {
+          -- file_ignore_patterns = {
             ".git/",
-            ".cache",
+            -- ".cache",
             "%.o",
             "%.a",
             "%.out",
@@ -47,7 +47,7 @@ return {
             "%.pyc",
             ".node_modules/",
             ".vscode/",
-          },
+          -- },
         })
       end,
       desc = "Search all files ( with hidden files )",

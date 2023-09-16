@@ -17,4 +17,11 @@ return {
     "github/copilot.vim",
     event = "VeryLazy",
   },
+  -- {
+  --   "nvim-telescope/telescope-media-files.nvim",
+  --   event = "VeryLazy",
+  --   config = function()
+  --     require("telescope").load_extension("media_files")
+  --   end,
+  -- }
 }
