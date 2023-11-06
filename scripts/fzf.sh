@@ -7,7 +7,7 @@ FZF_PATH=$HOME/.fzf
 rm -rf $FZF_PATH
 git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
 
-$HOME/.fzf/install
+$HOME/.fzf/install --all
 
 sed -i '/### FZF BLOCK START ###/,/### FZF BLOCK END ###/d' $ZSHRC_PATH
 cat << 'EOF' >> $ZSHRC_PATH

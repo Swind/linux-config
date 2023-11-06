@@ -1,6 +1,6 @@
 #!/bin/bash
 
-sudo apt install curl
+sudo apt install -y curl
 
 curl https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > packages.microsoft.gpg
 sudo install -o root -g root -m 644 packages.microsoft.gpg /usr/share/keyrings/
