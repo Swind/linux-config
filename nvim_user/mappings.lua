@@ -30,10 +30,11 @@ return {
     -- search all files
     ["<C-p>"] = {
       function()
-        require("telescope.builtin").find_files({
+        require("telescope.builtin").find_files(require('telescope.themes').get_ivy({
           hidden = true,
           no_ignore = false,
-          -- file_ignore_patterns = {
+          previewer = false,
+          file_ignore_patterns = {
             ".git/",
             -- ".cache",
             "%.o",
@@ -47,8 +48,9 @@ return {
             "%.pyc",
             ".node_modules/",
             ".vscode/",
-          -- },
-        })
+          },
+          find_command = { 'rg', '--files' },
+        }))
       end,
       desc = "Search all files ( with hidden files )",
     },
