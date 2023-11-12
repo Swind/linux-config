@@ -1,6 +1,6 @@
 #!/bin/bash
 echo "neovim: build prerequisites"
-sudo apt-get install -y ninja-build gettext libtool libtool-bin autoconf automake cmake g++ pkg-config unzip curl doxygen
+sudo apt-get install -y ninja-build gettext libtool libtool-bin autoconf automake cmake g++ pkg-config unzip curl doxygen xclip
 
 TARGET_DIR=$HOME/Software
 NEOVIM_DIR=$TARGET_DIR/neovim
