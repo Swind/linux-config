@@ -11,7 +11,7 @@ return {
   -- },
   {
     "ntpeters/vim-better-whitespace",
-     event = "VeryLazy",
+    event = "VeryLazy",
   },
   {
     "github/copilot.vim",
@@ -41,7 +41,23 @@ return {
   },
   {
     'RaafatTurki/hex.nvim',
-  }
+  },
+  {
+    "L3MON4D3/LuaSnip",
+    version = "v2.*",
+    build = "make install_jsregexp)",
+    config = function(plugin, opts)
+      -- include the default astronvim config that calls the setup call
+      require "plugins.configs.luasnip" (plugin, opts)
+      -- load snippets paths
+      require("luasnip.loaders.from_vscode").lazy_load {
+        -- this can be used if your configuration lives in ~/.config/nvim
+        -- if your configuration lives in ~/.config/astronvim, the full path
+        -- must be specified in the next line
+        paths = { "/home/swind/.config/snippets" }
+      }
+    end,
+  },
   -- {
   --   "nvim-telescope/telescope-media-files.nvim",
   --   event = "VeryLazy",
