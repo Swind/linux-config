@@ -1,6 +1,7 @@
 #!/bin/bash
 
 ZSHRC_PATH=$HOME/.config/zsh/.zshrc
+VERSION=1.22.0
 
 source $(dirname "$0")/lib.sh
 ARCH=$(detect_arch)
@@ -11,7 +12,7 @@ fi
 
 SOFTWARE_DIR=$HOME/Software
 GO_DIR=$SOFTWARE_DIR/go
-GO_URL=https://go.dev/dl/go1.19.3.linux-${ARCH}.tar.gz
+GO_URL=https://go.dev/dl/go${VERSION}.linux-${ARCH}.tar.gz
 GO_BASE_NAME="${GO_URL##*/}"
 
 echo "Removing $GO_DIR"
