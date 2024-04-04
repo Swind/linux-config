@@ -1,5 +1,3 @@
-if true then return {} end -- WARN: REMOVE THIS LINE TO ACTIVATE THIS FILE
-
 -- AstroCore provides a central place to modify mappings, vim options, autocommands, and more!
 -- Configuration documentation can be found with `:h astrocore`
 -- NOTE: We highly recommend setting up the Lua Language Server (`:LspInstall lua_ls`)
@@ -70,6 +68,39 @@ return {
         ["<Leader>b"] = { desc = "Buffers" },
         -- quick save
         -- ["<C-s>"] = { ":w!<cr>", desc = "Save File" },  -- change description but the same command
+        --
+        -- navigate
+        ["<A-h>"] = { "<C-w>h", desc = "Move to left split" },
+        ["<A-j>"] = { "<C-w>j", desc = "Move to down split" },
+        ["<A-k>"] = { "<C-w>k", desc = "Move to up split" },
+        ["<A-l>"] = { "<C-w>l", desc = "Move to right split" },
+        ["<F4>"] = { "<cmd>ClangdSwitchSourceHeader<CR>", desc = "Switch between header and source" },
+        ["<C-p>"] = {
+          function()
+            require("telescope.builtin").find_files(require("telescope.themes").get_ivy {
+              hidden = true,
+              no_ignore = false,
+              previewer = false,
+              file_ignore_patterns = {
+                ".git/",
+                -- ".cache",
+                "%.o",
+                "%.a",
+                "%.out",
+                "%.class",
+                "%.pdf",
+                "%.mkv",
+                "%.mp4",
+                "%.zip",
+                "%.pyc",
+                ".node_modules/",
+                ".vscode/",
+              },
+              find_command = { "rg", "--files" },
+            })
+          end,
+          desc = "Search all files ( with hidden files )",
+        },
       },
       t = {
         -- setting a mapping to false will disable it
