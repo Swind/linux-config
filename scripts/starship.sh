@@ -17,3 +17,6 @@ cat << 'EOF' >> $HOME/.zshrc
 eval "$(starship init zsh)"
 ### STARSHIP BLOCK END ###
 EOF
+
+# Generate starship config
+starship preset no-nerd-font -o ~/.config/starship.toml
