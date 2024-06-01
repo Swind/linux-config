@@ -106,6 +106,12 @@ return {
         -- setting a mapping to false will disable it
         -- ["<esc>"] = false,
       },
+      v = {
+        ["<Leader>y"] = {
+          function() require("osc52").copy_visual() end,
+          desc = "OSC52 - Copy the current",
+        },
+      },
     },
   },
 }
