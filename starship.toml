@@ -1,126 +1,200 @@
-#format = """
-#[╭─user───❯](bold blue) $username
-#[┣─system─❯](bold yellow) $hostname
-#[┣─project❯](bold red) $directory$rust$git_branch$git_status$package$golang$terraform$docker_context$python$docker_context$nodejs
-#[╰─cmd────❯](bold green) 
-#"""
-[username]
-style_user = "green bold"
-style_root = "red bold"
-format = "[$user]($style) "
+# Chevron Glance
+
+"$schema" = 'https://starship.rs/config-schema.json'
+
+format = """
+[](fg:sec)\
+$sudo\
+$os\
+$jobs\
+$username\
+$hostname\
+$localip\
+$git_status\
+$directory\
+$git_commit$git_state$git_metrics\
+$git_branch\
+$memory_usage\
+$status\
+[ ](fg:prim)\
+$cmd_duration\
+$line_break$character
+"""
+
+add_newline = false
+
+palette = "chevron_glance"
+
+[palettes.chevron_glance]
+prim = '#a7906f' #Primary/Directory Background
+sec = '#3a3a3a' #Accents
+primt = '#3a3a3a' #Primary text color (non-glyphic)
+sudo = '#9c454e'
+user = '#50925b'
+host = '#2596be'
+ip = '#2596be'
+duration = '#8a8a8a'
+# Git Colors
+tert = '#3a3a3a' #Tertiary color, mostly used for GitHub text.
+conflicted = 'red'
+ahead = 'cyan'
+behind = 'orange'
+diverged = 'blue'
+uptodate = 'green'
+untracked = 'purple'
+stashed =  '#6b84eb' #light blue
+modified = 'yellow'
+staged = '#c5e187' #sage
+renamed = '#ce63ff' #lilac
+deleted = '#f54caf' #pink
+
+[sudo]
+format = '[ ]($style)'
+style = 'fg:sudo bg:sec'
 disabled = false
-show_always = true
+
+[os]
+format = "[$symbol ]($style)"
+style = "fg:prim bg:sec"
+disabled = false
+
+[os.symbols]
+Alpine = ""
+Amazon = ""
+Android = ""
+Arch = ""
+CentOS = ""
+Debian = ""
+DragonFly = "🐉" # ""
+Emscripten = "🔗"
+EndeavourOS = "" # ""
+Fedora = ""
+FreeBSD = ""
+Garuda = ""
+Gentoo = ""
+HardenedBSD = "聯"
+Illumos = "🐦"
+Linux = ""
+Macos = ""
+Manjaro = ""
+Mariner = ""
+MidnightBSD = "🌘"
+Mint = ""
+NetBSD = ""
+NixOS = ""
+OpenBSD = "" # ""
+OpenCloudOS = "☁️"
+openEuler = ""
+openSUSE = ""
+OracleLinux = "⊂⊃"
+Pop = "" # ""
+Raspbian = ""
+Redhat = ""
+RedHatEnterprise = ""
+Redox = "🧪"
+Solus = "" # " "
+SUSE = ""
+Ubuntu = ""
+Unknown = ""
+Windows = ""
+
+[jobs]
+format = '[]($style)[$symbol$number](fg:primt bg:prim)[]($style)'
+style = 'fg:prim bg:sec'
+symbol = '󰇺 '
+symbol_threshold = 1
+number_threshold = 2
+disabled = false
+
+[username]
+format = '[](fg:sec bg:user)[ $user ]($style)[](fg:user bg:sec)'
+style_user = 'fg:primt bold bg:user'
+style_root = 'fg:primt bold bg:sudo'
+show_always = false
+disabled = false
 
 [hostname]
-ssh_only = false
-format = '[$hostname](bold yellow) '
-trim_at = "."
+format = '[ ](bg:sec)[@](fg:prim bold bg:sec)[ ](bg:sec)[](fg:sec bg:host)[$ssh_symbol](fg:primt bold bg:host)[ $hostname ](fg:primt bold bg:host)[](fg:host bg:sec)'
+ssh_only = true
+ssh_symbol = ' '
+#trim_at = '.companyname.com'
 disabled = false
 
-# Replace the "❯" symbol in the prompt with "➜"
-[character]                            # The name of the module we are configuring is "character"
-success_symbol = "[﬌](bold green)"     # The "success_symbol" segment is being set to "➜" with the color "bold green"
-error_symbol = "[✗](bold red)"
-#  
-# configure directory
+[localip]
+format = '[](fg:sec bg:ip)[ $localipv4 ](fg:primt bold bg:ip)[](fg:ip bg:sec)'
+ssh_only = true
+disabled = false
+
+[git_status]
+format = '([$all_status$ahead_behind]($style))[](fg:sec bg:prim)'
+style = 'fg:prim bg:tert'
+conflicted = '[](fg:sec bg:conflicted)[](fg:conflicted bg:sec)'
+ahead = '[](fg:sec bg:ahead)[](fg:ahead bg:sec)'
+behind = '[](fg:sec bg:behind)[](fg:behind bg:behind)'
+diverged = '[](fg:sec bg:ahead)[](fg:ahead bg:sec)'
+up_to_date = '[](fg:sec bg:uptodate)[](fg:uptodate bg:sec)'
+untracked = '[](fg:sec bg:untracked)[](fg:untracked bg:sec)'
+stashed = '[](fg:sec bg:stashed)[](fg:stashed bg:sec)'
+modified = '[](fg:sec bg:modified)[](fg:modified bg:sec)'
+staged = '[](fg:sec bg:staged)[](fg:staged bg:sec)'
+renamed = '[](fg:sec bg:renamed)[](fg:renamed bg:sec)'
+deleted = '[](fg:sec bg:deleted)[](fg:deleted bg:sec)'
+disabled = false
+
 [directory]
-read_only = " "
-truncation_length = 10
-truncate_to_repo = true # truncates directory to root folder if in github repo
-style = "bold italic blue"
-
-[cmd_duration]
-min_time = 4
-show_milliseconds = false
-disabled = false
-style = "bold italic red"
-
-[aws]
-symbol = "  "
-
-[conda]
-symbol = " "
-
-[dart]
-symbol = " "
-
-#[directory]
-#read_only = " "
-
-[docker_context]
-symbol = " "
-format = "via [$symbol$context]($style) "
-style = "blue bold"
-only_with_files = true
-detect_files = ["docker-compose.yml", "docker-compose.yaml", "Dockerfile"]
-detect_folders = []
+format = '[ ]($style)[$read_only](fg:primt bg:prim)[$repo_root]($repo_root_style)[$path](fg:primt bold bg:prim)'
+style = 'fg:sec bg:prim'
+home_symbol = ' ~'
+read_only = '󰉐 '
+#read_only_style = 'fg: bg:'
+truncation_length = 2
+truncation_symbol = '…/'
+truncate_to_repo = true
+repo_root_format = '[  ](fg:sec bg:prim)[$read_only]($read_only_style)[$before_root_path]($before_repo_root_style)[$repo_root]($repo_root_style)[$path]($style)[ ](bg:prim)'
+repo_root_style	= 'fg:sec bold bg:prim'
+use_os_path_sep = true
 disabled = false
 
-[elixir]
-symbol = " "
-
-[elm]
-symbol = " "
+[directory.substitutions]
+"Documents" = "󰈙 "
+"Downloads" = " "
+"Music" = " "
+"Pictures" = " "
+".config" = ". "
 
 [git_branch]
-symbol = " "
-
-[golang]
-symbol = " "
-
-[hg_branch]
-symbol = " "
-
-[java]
-symbol = " "
-
-[julia]
-symbol = " "
+format = '[](fg:tert bg:prim)[$symbol $branch(:$remote_branch)]($style)[](fg:tert bg:prim)'
+style = 'fg:prim bold bg:tert'
+symbol = ''
+#ignore_branches = ['master', 'main']
 
 [memory_usage]
-symbol = " "
+format = '[](fg:prim bg:sec)[$symbol]($style)[](fg:sec bg:prim)'
+style = 'fg:sudo bg:sec'
+symbol = '  !'
+threshold = 75
+disabled = false
 
-[nim]
-symbol = " "
+[status]
+format = '[$symbol]($style)'
+style = 'fg:sudo bg:prim'
+symbol = '  '
+disabled = false
 
-[nix_shell]
-symbol = " "
+[cmd_duration]
+format = '[󰾨 $duration ]($style)'
+style = 'fg:duration'
+min_time = 500
+disabled = false
 
-[package]
-symbol = " "
+[line_break]
+disabled = false
 
-[perl]
-symbol = " "
-
-[php]
-symbol = " "
-
-[python]
-symbol = " "
-#pyenv_version_name = true
-format = 'via [${symbol}python (${version} )(\($virtualenv\) )]($style)'
-style = "bold yellow"
-pyenv_prefix = "venv "
-python_binary = ["./venv/bin/python", "python", "python3", "python2"]
-detect_extensions = ["py"]
-version_format = "v${raw}"
-
-[ruby]
-symbol = " "
-
-[rust]
-symbol = " "
-
-[scala]
-symbol = " "
-
-[shlvl]
-symbol = " "
-
-[swift]
-symbol = "ﯣ "
-
-[nodejs]
-format = "via [ Node.js $version](bold green) "
-detect_files = ["package.json", ".node-version"]
-detect_folders = ["node_modules"]
+[character]
+disabled = false
+success_symbol = '[ 󱞩](bold fg:prim)'
+error_symbol = '[ 󱞩](bold fg:sudo)'
+vimcmd_symbol = '[ ](bold fg:prim)'
+vimcmd_replace_one_symbol = '[ ](bold fg:purple)'
+vimcmd_replace_symbol = '[ ](bold fg:purple)'
+vimcmd_visual_symbol = '[ ](bold fg:yellow)'
