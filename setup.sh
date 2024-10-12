@@ -13,7 +13,7 @@ fi
 # link $HOME/.myconfig to $HOME/.config
 # if $HOME/.config is exist, remove it
 if [ -d $HOME/.config ]; then
-  rm -rf $HOME/.config
+	rm -rf $HOME/.config
 fi
 ln -s $HOME/.myconfig $HOME/.config
 
@@ -36,16 +36,16 @@ zsh -c "source $HOME/.zshrc && $HOME/.myconfig/scripts/pyenv-virtualenv.sh"
 
 # Check python 3.10.6 is installed, if not, install it
 if [ ! -d $HOME/.pyenv/versions/3.10.6 ]; then
-  zsh -c "source $HOME/.zshrc && pyenv install 3.10.6"
+	zsh -c "source $HOME/.zshrc && pyenv install 3.10.6"
 fi
 
 # Check virtualenv neovim is exist, if not, create it
 if [ ! -d $HOME/.pyenv/versions/neovim ]; then
-  zsh -c "source $HOME/.zshrc && pyenv virtualenv 3.10.6 neovim"
+	zsh -c "source $HOME/.zshrc && pyenv virtualenv 3.10.6 neovim"
 fi
 
-install_scripts="go.sh node.sh rust.sh neovim.sh astronvim.sh docker.sh exa.sh starship.sh zoxide.sh vscode.sh navi.sh keygen.sh fzf.sh font.sh fd.sh"
+install_scripts="go.sh node.sh rust.sh neovim.sh astronvim.sh docker.sh eza.sh starship.sh zoxide.sh vscode.sh navi.sh keygen.sh fzf.sh font.sh fd.sh"
 for script in $install_scripts; do
-  echo "Installing $script..."
-  zsh -c "source $HOME/.zshrc && $HOME/.myconfig/scripts/$script"
+	echo "Installing $script..."
+	zsh -c "source $HOME/.zshrc && $HOME/.myconfig/scripts/$script"
 done
