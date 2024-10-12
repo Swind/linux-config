@@ -31,8 +31,8 @@ fi
 ##################################################
 
 # Alias
-alias l="exa -lah"
-alias ls="exa"
+alias l="eza -lah --icons"
+alias ls="eza"
 alias vim=nvim
 alias fall="find . -name '*.cpp' -o -name '*.h' | sed 's| |\\ |g' | xargs clang-format -i"
 alias gf='dbus-send --type=method_call --dest=org.gnome.Shell /org/gnome/Shell org.gnome.Shell.Eval string:"global.reexec_self()"'
