@@ -1,0 +1,20 @@
+{
+  "ip-plan-private-ip": {
+    "prefix": ["ippri"],
+    "body": [
+      "ip: <<IP:${1:datacenter}-${2:type}-private:${1}-${2}-${3:name}>>",
+      "netmask: <<NETMASK:${1:datacenter}-${2:type}-private>>",
+      "gateway: <<GATEWAY:${1:datacenter}-${2:type}-private>>"
+    ],
+    "description": "Generate a private IP address for a given datacenter and type"
+  },
+  "ip-plan-public-ip": {
+    "prefix": ["ippub"],
+    "body": [
+      "ip: <<IP:${1:datacenter}-${2:type}-public:${1}-${2}-${3:name}>>",
+      "netmask: <<NETMASK:${1:datacenter}-${2:type}-public>>",
+      "gateway: <<GATEWAY:${1:datacenter}-${2:type}-public>>"
+    ],
+    "description": "Generate a public IP address for a given datacenter and type"
+  }
+}
