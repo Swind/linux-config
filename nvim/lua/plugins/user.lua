@@ -83,6 +83,7 @@ return {
       )
     end,
   },
+  { "ojroques/nvim-osc52" },
   -- {
   --   "David-Kunz/gen.nvim",
   --   opts = {
