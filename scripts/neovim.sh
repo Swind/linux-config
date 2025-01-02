@@ -4,7 +4,7 @@ sudo apt-get install -y ninja-build gettext libtool libtool-bin autoconf automak
 
 TARGET_DIR=$HOME/Software
 NEOVIM_DIR=$TARGET_DIR/neovim
-NEOVIM_VERSION=v0.10.0
+NEOVIM_VERSION=v0.10.1
 
 mkdir -p $TARGET_DIR
 
@@ -17,6 +17,7 @@ else
 fi
 
 pushd $NEOVIM_DIR
+git pull
 git checkout $NEOVIM_VERSION
 make CMAKE_BUILD_TYPE=RelWithDebInfo
 sudo make install
