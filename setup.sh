@@ -44,7 +44,7 @@ if [ ! -d $HOME/.pyenv/versions/neovim ]; then
 	zsh -c "source $HOME/.zshrc && pyenv virtualenv 3.10.6 neovim"
 fi
 
-install_scripts="go.sh node.sh rust.sh neovim.sh astronvim.sh docker.sh eza.sh starship.sh zoxide.sh vscode.sh navi.sh keygen.sh fzf.sh font.sh fd.sh"
+install_scripts="go.sh node.sh rust.sh neovim.sh astronvim.sh docker.sh eza.sh starship.sh zoxide.sh vscode.sh navi.sh keygen.sh fzf.sh font.sh fd.sh lazygit.sh"
 for script in $install_scripts; do
 	echo "Installing $script..."
 	zsh -c "source $HOME/.zshrc && $HOME/.myconfig/scripts/$script"
