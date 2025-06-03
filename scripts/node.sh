@@ -10,7 +10,8 @@ fi
 
 SOFTWARE_DIR=$HOME/Software
 NODE_DIR=$SOFTWARE_DIR/node
-NODE_URL=https://nodejs.org/dist/v18.12.1/node-v18.12.1-linux-${ARCH}.tar.xz
+NODE_VERSION=22.16.0
+NODE_URL=https://nodejs.org/dist/v$NODE_VERSION/node-v$NODE_VERSION-linux-${ARCH}.tar.xz
 NODE_BASE_NAME="${NODE_URL##*/}"
 
 echo "Removing $NODE_DIR"
