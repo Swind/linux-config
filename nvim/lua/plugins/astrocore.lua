@@ -10,10 +10,10 @@ return {
   opts = {
     -- Configure core features of AstroNvim
     features = {
-      large_buf = { size = 1024 * 500, lines = 10000 }, -- set global limits for large files for disabling features like treesitter
+      large_buf = { size = 1024 * 256, lines = 10000 }, -- set global limits for large files for disabling features like treesitter
       autopairs = true, -- enable autopairs at start
       cmp = true, -- enable completion at start
-      diagnostics_mode = 3, -- diagnostic mode on start (0 = off, 1 = no signs/virtual text, 2 = no virtual text, 3 = on)
+      diagnostics = { virtual_text = true, virtual_lines = false }, -- diagnostic settings on startup
       highlighturl = true, -- highlight URLs at start
       notifications = true, -- enable notifications at start
     },
@@ -22,19 +22,33 @@ return {
       virtual_text = true,
       underline = true,
     },
+    -- passed to `vim.filetype.add`
+    filetypes = {
+      -- see `:h vim.filetype.add` for usage
+      extension = {
+        foo = "fooscript",
+      },
+      filename = {
+        [".foorc"] = "fooscript",
+      },
+      pattern = {
+        [".*/etc/foo/.*"] = "fooscript",
+      },
+    },
     -- vim options can be configured here
     options = {
       opt = { -- vim.opt.<key>
         relativenumber = true, -- sets vim.opt.relativenumber
         number = true, -- sets vim.opt.number
         spell = false, -- sets vim.opt.spell
-        signcolumn = "auto", -- sets vim.opt.signcolumn to auto
+        signcolumn = "yes", -- sets vim.opt.signcolumn to yes
         wrap = false, -- sets vim.opt.wrap
       },
       g = { -- vim.g.<key>
         -- configure global vim variables (vim.g)
         -- NOTE: `mapleader` and `maplocalleader` must be set in the AstroNvim opts or before `lazy.setup`
         -- This can be found in the `lua/lazy_setup.lua` file
+        python3_host_prog = os.getenv "HOME" .. "/.pyenv/versions/neovim/bin/python",
       },
     },
     -- Mappings can be configured through AstroCore as well.
@@ -44,31 +58,19 @@ return {
       n = {
         -- second key is the lefthand side of the map
 
-        -- navigate buffer tabs with `H` and `L`
-        -- L = {
-        --   function() require("astrocore.buffer").nav(vim.v.count > 0 and vim.v.count or 1) end,
-        --   desc = "Next buffer",
-        -- },
-        -- H = {
-        --   function() require("astrocore.buffer").nav(-(vim.v.count > 0 and vim.v.count or 1)) end,
-        --   desc = "Previous buffer",
-        -- },
+        -- navigate buffer tabs
+        ["]b"] = { function() require("astrocore.buffer").nav(vim.v.count1) end, desc = "Next buffer" },
+        ["[b"] = { function() require("astrocore.buffer").nav(-vim.v.count1) end, desc = "Previous buffer" },
 
         -- mappings seen under group name "Buffer"
-        ["<Leader>bD"] = {
+        ["<Leader>bd"] = {
           function()
             require("astroui.status.heirline").buffer_picker(
               function(bufnr) require("astrocore.buffer").close(bufnr) end
             )
           end,
-          desc = "Pick to close",
+          desc = "Close buffer from tabline",
         },
-        -- tables with just a `desc` key will be registered with which-key if it's installed
-        -- this is useful for naming menus
-        ["<Leader>b"] = { desc = "Buffers" },
-        -- quick save
-        -- ["<C-s>"] = { ":w!<cr>", desc = "Save File" },  -- change description but the same command
-        --
         -- navigate
         ["<A-h>"] = { "<C-w>h", desc = "Move to left split" },
         ["<A-j>"] = { "<C-w>j", desc = "Move to down split" },
@@ -77,34 +79,33 @@ return {
         ["<F4>"] = { "<cmd>ClangdSwitchSourceHeader<CR>", desc = "Switch between header and source" },
         ["<C-p>"] = {
           function()
-            require("telescope.builtin").find_files(require("telescope.themes").get_ivy {
-              hidden = true,
-              no_ignore = false,
-              previewer = false,
-              file_ignore_patterns = {
+            require("snacks").picker.files {
+              hidden = vim.tbl_get((vim.uv or vim.loop).fs_stat ".git" or {}, "type") == "directory",
+              exclude = {
                 ".git/",
                 -- ".cache",
-                "%.o",
-                "%.a",
-                "%.out",
-                "%.class",
-                "%.pdf",
-                "%.mkv",
-                "%.mp4",
-                "%.zip",
-                "%.pyc",
+                "*.o",
+                "*.a",
+                "*.out",
+                "*.class",
+                "*.pdf",
+                "*.mkv",
+                "*.mp4",
+                "*.zip",
+                "*.pyc",
                 ".node_modules/",
                 ".vscode/",
               },
-              find_command = { "rg", "--files" },
-            })
+            }
           end,
           desc = "Search all files ( with hidden files )",
         },
-      },
-      t = {
+        -- tables with just a `desc` key will be registered with which-key if it's installed
+        -- this is useful for naming menus
+        -- ["<Leader>b"] = { desc = "Buffers" },
+
         -- setting a mapping to false will disable it
-        -- ["<esc>"] = false,
+        -- ["<C-S>"] = false,
       },
       v = {
         ["<Leader>y"] = {
