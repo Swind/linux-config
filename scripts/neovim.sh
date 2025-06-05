@@ -1,8 +1,9 @@
 #!/bin/bash
 echo "neovim: build prerequisites"
 sudo apt-get install -y ninja-build gettext libtool libtool-bin autoconf automake cmake g++ \
-  pkg-config unzip curl doxygen xclip btm luarocks
+  pkg-config unzip curl doxygen xclip btm luarocks ripgrep imagemagick
 npm install -g tree-sitter-cli
+npm install -g @mermaid-js/mermaid-cli
 
 TARGET_DIR=$HOME/Software
 NEOVIM_DIR=$TARGET_DIR/neovim
