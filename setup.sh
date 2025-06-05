@@ -34,14 +34,16 @@ echo "Installing pyenv and pyenv virtualenv..."
 ./pyenv.sh
 zsh -c "source $HOME/.zshrc && $HOME/.myconfig/scripts/pyenv-virtualenv.sh"
 
-# Check python 3.10.6 is installed, if not, install it
-if [ ! -d $HOME/.pyenv/versions/3.10.6 ]; then
-	zsh -c "source $HOME/.zshrc && pyenv install 3.10.6"
+PYTHON_VERSION="3.10.6"
+
+# Check python $PYTHON_VERSION is installed, if not, install it
+if [ ! -d $HOME/.pyenv/versions/$PYTHON_VERSION ]; then
+	zsh -c "source $HOME/.zshrc && pyenv install $PYTHON_VERSION"
 fi
 
 # Check virtualenv neovim is exist, if not, create it
 if [ ! -d $HOME/.pyenv/versions/neovim ]; then
-	zsh -c "source $HOME/.zshrc && pyenv virtualenv 3.10.6 neovim"
+	zsh -c "source $HOME/.zshrc && pyenv virtualenv $PYTHON_VERSION neovim"
 fi
 
 install_scripts="go.sh node.sh rust.sh neovim.sh astronvim.sh docker.sh eza.sh starship.sh zoxide.sh vscode.sh navi.sh keygen.sh fzf.sh font.sh fd.sh lazygit.sh"
