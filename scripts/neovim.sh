@@ -4,7 +4,7 @@ sudo apt-get install -y ninja-build gettext libtool libtool-bin autoconf automak
 
 TARGET_DIR=$HOME/Software
 NEOVIM_DIR=$TARGET_DIR/neovim
-NEOVIM_VERSION=v0.10.1
+NEOVIM_VERSION=v0.11.4
 
 mkdir -p $TARGET_DIR
 

@@ -1,7 +1,7 @@
 #!/bin/bash
 
 ZSHRC_PATH=$HOME/.config/zsh/.zshrc
-VERSION=1.22.0
+VERSION=1.23.4
 
 source $(dirname "$0")/lib.sh
 ARCH=$(detect_arch)
