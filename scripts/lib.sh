@@ -13,6 +13,34 @@ detect_arch ()
   fi
 }
 
+detect_os ()
+{
+  if [ -f /etc/os-release ]; then
+    . /etc/os-release
+    echo "$ID"
+  elif [ -f /etc/redhat-release ]; then
+    echo "fedora"
+  else
+    echo "unknown"
+  fi
+}
+
+detect_pkg_manager ()
+{
+  OS=$(detect_os)
+  case "$OS" in
+    ubuntu|debian)
+      echo "apt"
+      ;;
+    fedora|rhel|centos)
+      echo "dnf"
+      ;;
+    *)
+      echo "unknown"
+      ;;
+  esac
+}
+
 #!/usr/bin/env bash
 
 # Set the target GitHub repository (format: "owner/repo")

@@ -1,6 +1,17 @@
 #!/bin/bash
+
+source $(dirname "$0")/lib.sh
+PKG_MANAGER=$(detect_pkg_manager)
+
 echo "neovim: build prerequisites"
-sudo apt-get install -y ninja-build gettext libtool libtool-bin autoconf automake cmake g++ pkg-config unzip curl doxygen xclip
+if [ "$PKG_MANAGER" = "apt" ]; then
+    sudo apt-get install -y ninja-build gettext libtool libtool-bin autoconf automake cmake g++ pkg-config unzip curl doxygen xclip
+elif [ "$PKG_MANAGER" = "dnf" ]; then
+    sudo dnf install -y ninja-build gettext libtool autoconf automake cmake gcc-c++ pkg-config unzip curl doxygen xclip
+else
+    echo "Unsupported package manager: $PKG_MANAGER"
+    exit 1
+fi
 
 TARGET_DIR=$HOME/Software
 NEOVIM_DIR=$TARGET_DIR/neovim

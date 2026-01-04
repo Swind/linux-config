@@ -1,8 +1,24 @@
 #!/bin/bash
 
-echo "Update apt and install packages..."
-sudo apt update
-sudo apt install -y git zsh tmux
+source $(dirname "$0")/lib.sh
+
+OS=$(detect_os)
+PKG_MANAGER=$(detect_pkg_manager)
+
+echo "Detected OS: $OS"
+echo "Package manager: $PKG_MANAGER"
+
+echo "Update packages and install git zsh tmux..."
+if [ "$PKG_MANAGER" = "apt" ]; then
+    sudo apt update
+    sudo apt install -y git zsh tmux
+elif [ "$PKG_MANAGER" = "dnf" ]; then
+    sudo dnf update -y
+    sudo dnf install -y git zsh tmux
+else
+    echo "Unsupported package manager: $PKG_MANAGER"
+    exit 1
+fi
 
 echo "Cloning linux-config from github"
 # check $HOME/.myconfig is exist, if not, clone it
